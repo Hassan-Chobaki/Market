@@ -1,0 +1,55 @@
+
+
+@font-face {
+        font-family: "FONT";
+        src: url("/public/font/vazirR.woff2") format("woff2");
+    }
+
+
+
+
+
+:root{
+
+    --font-family:"FONT",sans-serif;
+
+
+    
+
+    --colorGreen:#517761;
+
+    --color1TextWhite: #fff;
+    --color2TextBlack: black;
+    --color3TextGray: #707070;
+
+    --background0Trans:#00000000;
+    --background1White:#fff;
+    --background2Black:#000;
+    --background3LightGray:#ebeceb;
+    --background4Gray:#d7d7d7;
+    --background5GrayDark:#8f8c8c;
+
+
+
+
+    --size1Text: 10px;
+    --size2Text: 12px;
+    --size3Text: 16px;
+    --size4Text: 20px;
+    --size5Text: 30px;
+
+
+    --bold:bold;
+    --normal:normal;
+    --small:small;
+
+
+
+    --borderRadius5:5px;
+    --borderRadius10:10px;
+    --borderRadius20:20px;
+
+    
+
+    
+}
