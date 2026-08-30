@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module" src="/public/js/main.js"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+<style>
+    
+
+    input,select {
+        border-radius: 5px;
+        border: 1px solid var(--black);
+        font-family: var(--font-family);
+        font-size: var(--size2Text);
+        width: 100%;
+        height: 36px;
+        box-sizing: border-box;
+    }
+    button{
+        background-color: var(--black);
+        color: var(--white);
+        font-family: var(--font-family);
+        height: 50px;
+        border-radius: 15px;
+    
+    }
+
+    label {
+        font-weight: bolder;
+        font-size: var(--size2Text);
+        padding-inline: 10px;
+    }
+
+    .back {
+        display: inline-block;
+        width: 80px;
+        font-size: var(--size3Text);
+        cursor: pointer;
+        background-color: var(--black);
+        color: var(--white);
+        text-align: center;
+    }
+
+    .container {
+    background-color: rgba(227, 246, 240, 0.582);
+    margin: 0;
+    width: 100%;
+    max-width: 99%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around; 
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+
+   
+
+    .order-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: start;
+    }
+
+    .left-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .info-panel,
+    .delivery {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        gap: 20px;
+        background-color: var(--gray);
+        border: 1px solid var(--white);
+        border-radius: 10px;
+        box-sizing: border-box;
+        width: 100%;
+        
+        
+    }
+
+    .divSender .info-row,
+    .divReciver .info-row,
+    .divAddress .info-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .divSender .info-row label,
+    .divReciver .info-row label,
+    .divAddress .info-row label {
+        flex: 0 0 auto;
+        padding-inline: 0;
+        white-space: nowrap;
+    }
+
+    .divSender .info-row input,
+    .divReciver .info-row input,
+    .divAddress .info-row input select{
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 100px;
+        max-width: 100%;        
+        box-sizing: border-box;
+    }
+
+
+    
+    .tel, .city, .mobile {
+        width: 66% !important;
+        max-width: 66% !important;
+    }
+
+    .delivery .info-row.city.tel {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: auto !important;
+    }
+
+    .delivery .info-row.city.tel label select{
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding-inline: 0;
+    }
+
+    .delivery .info-row.city.tel input select{
+        flex: 0 0 66%;
+        width: 66%;
+        max-width: 66%;
+        min-width: 100px;
+        box-sizing: border-box;
+    }
+
+    .divSender .info-row input[type="tel"],
+    .divReciver .info-row input[type="tel"] {
+        width: 66%;
+        max-width: 66%;
+        min-width: 100px;
+    }
+
+    .divAddress .address input select,
+    .divAddress .note-comment input select{
+        min-width: 150px;
+        flex: 1 1 220px;
+    }
+
+    
+
+    .delivery-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .divTD { display: flex; flex-direction: row; gap: 5px; }
+    .divTD.address {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .divTD.address label {
+        display: block;
+        width: 100%;
+    }
+
+    .divTD.address input  {
+        width: 100%;
+        min-width: 0;
+    }
+
+.divBtn{
+    
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap:10px;
+}
+
+
+
+.listOrder{
+    display: flex;
+    flex-direction:row;  
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gray);
+    color: var(--black);
+    width: 100%;
+    max-width: 60٪;
+    
+    box-shadow: 0 3px 4px 1px rgba(49, 49, 49, 0.7);  
+    margin: 10px;
+    padding: 5px;
+    font-size: var(--size2Text); 
+    flex:1;
+        }
+
+        
+img{
+    width: 40px;
+    height: 40px;}
+
+.factor{min-width: 30%;}
+
+.totalPrice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;        
+    font-weight: bold;    
+   /* text-shadow: 0px 1px .1px #FFF ;  */
+}    
+
+.listOrder.titr{background-color: var(--darkGray);font-weight: bold;}
+.listOrder{border-radius: 5px;}
+
+.tommorrow{
+    display: flex;
+    flex-direction: row;
+align-items:end;
+justify-content: center;
+color: white;
+background-color: black;
+
+}
+
+
+
+
+
+    /******************************************************************************************************/
+
+    @media (max-width: 900px) {
+        .container {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            padding:5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            
+        }
+
+        .factor{min-width: 95%;max-width: fit-content;box-sizing: border-box;}
+
+        form {
+            width: 100%;
+            padding: 0;
+        }
+
+        .order-form {
+            grid-template-columns:1fr;
+            width: auto;
+            gap: 16px;
+        }
+
+        .left-stack,
+        .right-stack {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+               
+        
+        .delivery .divTD.address {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            width: 100%;
+        }
+
+        .divSender .info-row input,
+        .divReciver .info-row input,
+        .divAddress .info-row input,        
+        
+        .delivery .divTD.city input,
+        .delivery .divTD.address input {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            flex: 1 auto !important;
+        }
+        
+
+        .delivery-row {
+            display: flex;
+            width: 100%;
+        }
+
+        .divBtn {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .divTD .delivery-row{display:flex;width:70px !important;gap:0 !important;margin: 0 !important;padding: 0;text-align: center;}
+
+
+
+        @media (max-width: 600px){
+    .listOrder{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;       
+        max-width:80%;
+        padding: 10px;
+    }
+
+    .listOrder > * {
+        flex: 0 0 .5;            
+        text-align: center;
+    }
+    img{width: 30px !important;height: 30px;border: 1px solid var(--white);}
+}
+
+    }
+
+
+</style>
+
+
+
+
+</head>
+<body>
+
+
+    <header>
+        <h1>ثبت سفارش</h1>
+            <div>
+                <span class="back" data-i18n="back" onclick="location.href='index.html'"></span>
+            </div>
+    </header>
+
+
+
+    <div class="container">
+        <div class="form">
+            <label>فرم ثبت سفارش</label>
+            <form class="order-form">
+                <div class="left-stack">
+
+                    <div class="info-panel divSender">
+                        <div class="info-row"><label data-i18n="nameFamily"></label><input type="text"></div>
+                        <div class="info-row"><label data-i18n="mobileSender"></label><input type="tel" maxlength="11" minlength="11"></div>
+                        <div class="info-row tel"><label data-i18n="phone"></label><input type="tel" data-i18n="optional"></div>
+                    </div>
+
+                    <div class="info-panel divReciver">
+                        <div class="info-row"><label data-i18n="nameReciver"></label><input type="text"></div>
+                        <div class="info-row"><label data-i18n="mobileReciver"></label><input type="tel" maxlength="11" minlength="11" data-i18n="optional"></div>
+                        <div class="info-row tel"><label data-i18n="phone"></label><input type="tel" data-i18n="optional"></div>
+                    </div>
+
+                    <div class="info-panel divAddress">
+                        
+                        <div class="info-row note-comment"><label data-i18n="note"></label><input type="text" data-i18n="placeHolderNote" data-i18n="optional"></div>
+                        <div class="info-row address"><label data-i18n="comment"></label><input type="text" data-i18n="optional"></div>
+                    </div>
+                </div>
+
+                <div class="right-stack">
+
+                        <div class="delivery">
+                                    <label data-i18n="deliveryInfo"></label>
+                                        <div class="divTD">                                       
+                                                
+                                                    <label data-i18n="date"></label>
+                                                    
+                                            <div class="delivery-row"><label data-i18n="day"></label><select id="day"></select></div>                         
+                                            <div class="delivery-row"><label data-i18n="month"></label><select id="month"></select></div>
+                                            <div class="delivery-row"><label data-i18n="year"></label><select id="year"></select>
+                                            <div class="tommorrow"><label>برای فردا</label></div>
+                                            </div>  
+                                            
+                                                                  
+                                        </div>
+
+                                        <div class="divTD">
+                                        <label data-i18n="time" ></label>
+                                            <div class="delivery-row"><label data-i18n="timeOf"></label><input type="time"></div>
+                                            <div class="delivery-row"><label data-i18n="timeTo"></label><input type="time"></div>                        
+                                        </div> 
+
+                                        <div class="divTD city"><label data-i18n="city"></label><input type="text"></div>
+                                        <div class="divTD address"><label data-i18n="address"></label><input type="text"></div>            
+                                        
+                                        <!--info-row address-->
+                        </div>
+                        
+
+                        <div class="divBtn"> 
+                            <div>
+                                <button data-i18n="orderSave"></button>
+                            </div>                            
+                        </div>
+
+                        
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <div class="factor">
+            <label>فاکتورخرید</label>
+
+            <div id="listOrder">
+               <div class="listOrder titr"> <span data-i18n="name"></span><span data-i18n="quantity"></span><span data-i18n="priceOne"></span><span data-i18n="sumRow"></span><span></span></div>                           
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+<script src="/public/js/orderSave.js"></script>
+</html>
