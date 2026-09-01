@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <script type="module" src="/public/js/main.js"></script>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+-->
     <title>Document</title>
 
 
@@ -163,7 +169,7 @@
         gap: 8px;
     }
 
-    .divTD { display: flex; flex-direction: row; gap: 5px; }
+    .divTD  { display: flex; flex-direction: row; gap: 5px; }
     .divTD.address {
         display: flex;
         flex-direction: column;
@@ -233,15 +239,64 @@ img{
 .tommorrow{
     display: flex;
     flex-direction: row;
-align-items:end;
-justify-content: center;
-color: white;
-background-color: black;
+    align-items:center;
+    justify-content: space-between;
+    color:var(--white);
+    
+    margin: 5px;
+    gap: 10px;
 
 }
+.forTom,.forOcc{background-color: var(--black);}
 
 
+        .tommorrow *:active{scale: .9;}
 
+.selectOcc{display: none;position: relative;z-index: 3;}
+
+
+.right-stack{position: relative;}
+#dark{
+    display: none;
+    inset:0;
+    background: rgba(49, 49, 49, 0.316);
+    z-index: 2;
+    position: absolute;
+    backdrop-filter: blur(2px);
+}
+
+.setDateOccation{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+ color: red;
+          
+    }
+
+
+.classDark{
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    gap: 10px;   
+    border-radius: 5px;
+    border: 1px solid var(--black);
+    padding-left: 5px;
+    padding-right: 2px;
+    background-color: darkslategray;
+    box-shadow: inset 0 1px 0 black;
+    color: var(--white);
+    width: 100%;
+    cursor: pointer;    
+    box-sizing: border-box;
+
+}
 
 
     /******************************************************************************************************/
@@ -284,7 +339,7 @@ background-color: black;
 
                
         
-        .delivery .divTD.address {
+        .delivery * .divTD.address {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -296,8 +351,8 @@ background-color: black;
         .divReciver .info-row input,
         .divAddress .info-row input,        
         
-        .delivery .divTD.city input,
-        .delivery .divTD.address input {
+        .delivery   .divTD.city input,
+        .delivery  .divTD.address input {
             width: 100% !important;
             max-width: 100% !important;
             min-width: 0 !important;
@@ -315,7 +370,11 @@ background-color: black;
             align-items: center;
             gap: 10px;
         }
-        .divTD .delivery-row{display:flex;width:70px !important;gap:0 !important;margin: 0 !important;padding: 0;text-align: center;}
+        .divTD  .delivery-row{display:flex;width:70px !important;gap:0 !important;margin: 0 !important;padding: 0;text-align: center;}
+
+        
+            
+        }
 
 
 
@@ -329,13 +388,16 @@ background-color: black;
     }
 
     .listOrder > * {
+       
         flex: 0 0 .5;            
         text-align: center;
     }
     img{width: 30px !important;height: 30px;border: 1px solid var(--white);}
 }
 
-    }
+    
+
+
 
 
 </style>
@@ -363,7 +425,7 @@ background-color: black;
                 <div class="left-stack">
 
                     <div class="info-panel divSender">
-                        <div class="info-row"><label data-i18n="nameFamily"></label><input type="text"></div>
+                        <div class="info-row"><label data-i18n="nameFamily"></label><input id="inpNameFamily" type="text"></div>
                         <div class="info-row"><label data-i18n="mobileSender"></label><input type="tel" maxlength="11" minlength="11"></div>
                         <div class="info-row tel"><label data-i18n="phone"></label><input type="tel" data-i18n="optional"></div>
                     </div>
@@ -384,29 +446,31 @@ background-color: black;
                 <div class="right-stack">
 
                         <div class="delivery">
+                            <div id="dark" class="classDark"><label class="setDateOccation" data-i18n="setDateOccasion"></label></div>
                                     <label data-i18n="deliveryInfo"></label>
                                         <div class="divTD">                                       
-                                                
-                                                    <label data-i18n="date"></label>
+                                           <label data-i18n="date"></label>
                                                     
-                                            <div class="delivery-row"><label data-i18n="day"></label><select id="day"></select></div>                         
-                                            <div class="delivery-row"><label data-i18n="month"></label><select id="month"></select></div>
-                                            <div class="delivery-row"><label data-i18n="year"></label><select id="year"></select>
-                                            <div class="tommorrow"><label>برای فردا</label></div>
-                                            </div>  
-                                            
+                                                    <div class="delivery-row"><label data-i18n="day"></label><select id="day"></select></div>                         
+                                                    <div class="delivery-row"><label data-i18n="month"></label><select id="month"></select></div>
+                                                    <div class="delivery-row"><label data-i18n="year"></label><select id="year"></select></div>                               
                                                                   
+                                        </div>
+                                        <div class="tommorrow">
+                                            <div class="forOcc" id="occasion"><label data-i18n="occasion"> </label></div><select class="selectOcc" id="selectOcc"></select>
+                                            <div class="forTom" id="tommorrow"><label data-i18n="tommorrow"> </label></div>
+                                            
                                         </div>
 
                                         <div class="divTD">
                                         <label data-i18n="time" ></label>
-                                            <div class="delivery-row"><label data-i18n="timeOf"></label><input type="time"></div>
-                                            <div class="delivery-row"><label data-i18n="timeTo"></label><input type="time"></div>                        
+                                            <div class="delivery-row"><label data-i18n="timeOf"></label><input type="time" value="07:00"></div>
+                                            <div class="delivery-row"><label data-i18n="timeTo"></label><input type="time" value="19:00"></div>                        
                                         </div> 
 
                                         <div class="divTD city"><label data-i18n="city"></label><input type="text"></div>
-                                        <div class="divTD address"><label data-i18n="address"></label><input type="text"></div>            
-                                        
+                                        <div class="divTD address"><label data-i18n="address"></label><input type="text"><button id="findOnMap" type="button" data-i18n="findOnMap"></button></div>            
+                                        <div id="map" style="height: 250px;width: 250px;display: none;"></div>
                                         <!--info-row address-->
                         </div>
                         
@@ -416,6 +480,11 @@ background-color: black;
                                 <button data-i18n="orderSave"></button>
                             </div>                            
                         </div>
+
+
+                        
+                           
+                        
 
                         
                 </div>
@@ -450,5 +519,5 @@ background-color: black;
 
 </body>
 
-<script src="/public/js/orderSave.js"></script>
+<script  src="/public/js/orderSave.js"></script>
 </html>

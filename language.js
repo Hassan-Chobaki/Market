@@ -51,6 +51,21 @@ export function changeLanguage() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const savedLang = localStorage.getItem("lang") || "fa";
 
 loadLang(savedLang);

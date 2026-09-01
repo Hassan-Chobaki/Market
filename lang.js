@@ -67,7 +67,11 @@ export const translation={
                     date:'تاریخ',
                     time:'ساعت',
                     optional:'اختیاری',
-                    priceOne:'قیمت واحد'    ,
+                    priceOne:'قیمت واحد',
+                    tommorrow:'برای فردا',
+                    occasion:'مناسبتهای تقویمی',
+                    setDateOccasion:'تاریخ تحویل خودکارتنظیم میشود',
+                    findOnMap:'یافتن روی نقشه',
                 
                 
                 
