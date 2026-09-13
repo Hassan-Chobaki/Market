@@ -2,17 +2,19 @@ const express=require ('express');
 const {Pool}=require('pg');
 const path=require('path');
 const multer=require('multer');
-const fs=require('fs');
+const fs=require('fs/promises');
+const { file } = require('zod');
 
 
 
 const app=express();
 
 const port=3000;
+
 app.use('/public',express.static(path.join(__dirname,'../public')));
 app.use('/admin',express.static(path.join(__dirname,'../admin')));
 
-//fs.mkdirSync('/upload/products',true);
+
 
 
 const pool=new Pool({
@@ -35,20 +37,26 @@ let newFolder;
                                                     const storage=multer.diskStorage({
 
                                                         destination:function (req,file,cb) {
-                                                                                            fs.mkdirSync(path.join(__dirname,'../public/image/flower'),{recursive:true});
+                                                                                            
                                                                                              newFolder=JSON.parse(req.body.data);
-                                                            fs.mkdirSync(path.join('../public/image/flower',String(newFolder.code) ) , {recursive:true});
-                                                            
-                                                                                            cb(null,`../public/image/flower/${newFolder.code}`)},
+                                                              fs.mkdir(path.join(__dirname,'../public/image/flower',newFolder.code ) , {recursive:true})
+                                                                    .then(()=>cb(null,`../public/image/flower/${newFolder.code}`))
+                                                                    .catch(err=>cb(err));
+                                                        },
 
                                                         filename:   function(req,file,cb){
                                                                                         const ext=path.extname(file.originalname) ;
 
-                                                                                        const name=Date.now() + '-' + file.originalname ;
+                                                                                        if(! req.fileCount)
+                                                                                            req.fileCount=1;
+                                                                                        else
+                                                                                            req.fileCount++;
+
+                                                                                        const name=req.fileCount + ext;
 
                                                                                         cb(null,name);
 
-                                                                                        }                                  
+                                                        }                                  
 
                                                         
                                                     })
@@ -111,8 +119,62 @@ app.post('/product', upload.array('images',3),async(req,res)=>{
 
 
 
+app.get('/product/show',async(req,res)=>{
+
+    const data = await pool.query('SELECT * FROM product ORDER BY code Asc');   
+
+    res.json(data.rows);
+
+    console.log(data);
+
+});
 
 
+
+app.get("/product/image/:code/:filename",async(req,res)=>{
+
+   const p=path.join(__dirname,'../public/image/flower',req.params.code,req.params.filename);
+    res.sendFile(p);
+
+console.log('________________p= ',p);
+
+});
+
+app.delete('/delete/:table/:key',async(req,res)=>{
+
+
+    const permittedTabel=['product','order','customer'];    
+    const {table,key}=req.params;
+
+                                if( ! permittedTabel.includes(table)){
+                                    res.send({error:false});
+                                    return;
+                                }
+
+     let removeTo='';
+                                if(table==='product')
+                                    removeTo='code';
+                                else
+                                    removeTo='id';
+
+                            try{  
+    const row=await pool.query(`DELETE FROM ${table} WHERE ${removeTo}=$1`,[key]);
+                                res.send({count:row.rowCount});
+                                if(row.rowCount>0)
+                                {
+
+    const folderAddress=path.join(__dirname,'../','public','image','flower',key);
+                                    try{
+                                        await fs.rm(folderAddress,{force:true,recursive:true});
+                                    }catch(error){
+                                        console.log("KHATA DAR HAZF POSHE AKS MAHSOL",error);
+                                    }
+                                }
+                            }catch(error){
+                                res.send({count:0});
+                                console.log("KHATAYE HENGEME HAZF AZ DB:",error);
+                            }
+})
 
 
 
