@@ -4,6 +4,7 @@ const path=require('path');
 const multer=require('multer');
 const fs=require('fs/promises');
 const { file } = require('zod');
+const sharp=require('sharp');
 
 
 
@@ -31,7 +32,7 @@ app.use(express.json());
 
 
                                           
-
+/*
 
 let newFolder;
                                                     const storage=multer.diskStorage({
@@ -73,7 +74,34 @@ let newFolder;
                                                                                         }
 
                                                                                     }
-                                                                                        })
+                                                                                        })              */
+
+
+
+                            const upload=multer({
+
+                                                    storage:multer.memoryStorage(),
+                                                    limits:{files:3,fileSize:5*1024*1024},
+                                                    fileFilter:function(req,file,cb){                                                  
+                                                        
+
+                                                                const allowedFiles=['image/jpeg','image/png','image/webp','image/bmp','image/x-ms-bmp'];
+
+                                                                if(allowedFiles.includes(file.mimetype))
+                                                                    cb(null,true);
+                                                                else
+                                                                    cb(new Error('Error in TYPE file.only[bmp/png/jpg/webp]'));
+
+
+
+
+                                                   
+                                                   
+                                                                 }
+
+
+
+                            });
 
 
 
@@ -101,12 +129,29 @@ app.use((req, res, next) => {
 
 
 
-app.post('/product', upload.array('images',3),async(req,res)=>{
-    
-            const images=req.files.map(file=>{return `../public/image/flower/${newFolder.code}/${file.filename}`;});
-            
+app.post('/product', upload.array('images',3),async(req,res)=>{           
     
     const {code,name,price,quantity,status}=JSON.parse(req.body.data);
+    const folderAddress=path.join(__dirname,'../','/public','/image','/flower',code);
+    await fs.mkdir(folderAddress,{recursive:true});
+
+    const images=[];
+    for(let index=0; index<req.files.length; index++){
+
+        let nameFile=(index+1).toString()+'.webp';
+        await sharp(req.files[index].buffer).webp({quality:80}).toFile(path.join(folderAddress,nameFile));
+        images.push(`../public/image/flower/${code}/${nameFile}`);
+
+    }
+
+
+    if(req.files[0]){
+        const thumbFile='thumb.webp';
+        sharp(req.files[0].buffer).resize(150,150,{fit:'cover'}).webp({quality:70}).toFile(path.join(folderAddress,thumbFile));
+    }
+
+
+
     const result=await pool.query(`INSERT INTO product (code,name,price,quantity,status)VALUES($1,$2,$3,$4,$5) RETURNING *`,[code,name,price,quantity,status]);
     
     
@@ -175,6 +220,24 @@ app.delete('/delete/:table/:key',async(req,res)=>{
                                 console.log("KHATAYE HENGEME HAZF AZ DB:",error);
                             }
 })
+
+
+
+
+app.put('/product/edit',async(req,res)=>{
+    const {name,code,price,quantity,status}=req.body;
+   
+    const result= await pool.query(`UPDATE product SET name=$1,price=$2,quntity=$3,status=$4) WHERE code=$5`,[name,price,quantity,status,code])
+
+    if(result.rowCount>0)
+        res.send({success:true});
+
+    console.log('RES::::::::::::',result);
+
+})
+
+
+
 
 
 
