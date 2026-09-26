@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+<style>
+
+    body {
+    font-family: tahoma;
+    min-height: 95vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+    .inp{display:flex;
+        flex-direction: column;
+        gap: 10px; 
+        justify-content: center;      
+        align-items: center;
+        
+    }
+    
+        .inp.user,.inp.pass{display: block; gap: 15px;}
+
+        .card{background-color:gray;padding-top: 20px;}
+
+    input,button {
+    min-height: 40px;
+    padding: 0px 12px;
+    font: inherit;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+button:active{background-color:darkgray;}
+
+.styleMsg{
+    margin: 10px;
+    max-width: fit-content;    
+    background:red;
+    color:white;
+    
+}
+
+</style>    
+</head>
+<body> 
+
+<div class="container">
+    <div class="card">
+        
+            <form id="loginForm" class="form">
+                <div class="inp">
+                    <div class="inp user"><input id="inpUserName" type="text" placeholder="َUser Name" autocomplete="username"></div>
+                    <div class="inp pass"><input id="inpPass" type="password" placeholder="Password" autocomplete="current-password"></div>
+               
+
+
+                
+                    <div class="btn"><button type="submit">Enter</button></div>
+                 </div>
+                
+            </form>
+<div class="styleMsg"><span id="msg"></span> </div>    
+
+    </div>
+    
+</div>
+<footer style="text-align: center;">
+    copyright 2026
+</footer>
+
+    
+</body>
+<script src="/admin/login.js"></script>
+</html>

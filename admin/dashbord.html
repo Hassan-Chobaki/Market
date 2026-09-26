@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <link rel="stylesheet" href="/admin/styleAdmin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+input,button,select{
+            font-family: var(--font-family);            
+            font-size: 14px;
+            border-radius: 8px;
+            border: 2px solid lightgray;
+            padding: 10px;          
+            
+        }
+
+        
+
+.cardSetup{width: 90dvw;display: flex;flex-direction: row;justify-content: space-between;padding: 20px;}  
+form{
+    box-sizing: border-box;
+    max-height: 500px;
+    max-width: 500px;
+    padding: 5px;
+    border: 1px solid var(--colorBorderDark);   
+    box-shadow: var(--shadowL);
+    border: none;
+    border-radius: 20px;
+}      
+.occasion{
+    box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;        
+            max-height: 400px;
+            overflow-y: auto;
+}
+
+.tblOccasion{
+
+    border-collapse: separate;
+    border-spacing:0;
+    box-sizing: border-box;
+    box-shadow: var(--shadow);
+    border: none;
+
+        
+}
+
+#tblOccasion tbody tr td {
+    padding: 20px 20px;
+    font-size: var(--size2);
+    
+}
+
+#tblOccasion tbody tr{
+    
+   
+    border-bottom: 1px solid var(--colorBorderlight);
+}
+
+.tblOccasion tbody tr:nth-child(even){
+    background-color: #33333308;
+
+}
+
+table td:nth-child(4){width: 100px;text-align: center;}
+
+.tblOccasion thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #d0cfcfdb;
+}
+
+
+
+
+
+
+        /***************************************************************************************************/
+        /****************************************** M O B I L E ********************************************/
+        /***************************************************************************************************/
+
+
+@media (max-width:768px) {
+
+
+
+    
+.divBt{width: 100%;display: flex;gap: 5px;margin-top: 50px;}
+
+
+.save{flex: 2;}
+.back{flex: 1;}
+
+
+
+   
+        input{padding: 10px;}
+
+   
+
+.menu,.cardProduct,.cardNewProduct,.overlay{display:none;flex-direction: row;}
+
+    
+.menu{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: block ;
+    position:static;
+    gap: 1px ;
+    margin: 0;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.088);
+    text-align: center;
+    text-shadow:var(--shadowD);
+    font-weight: bold;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    box-shadow: var(--shadowD);
+
+    
+}
+
+.menu>div:active{background-color: white;box-shadow: var(--shadowWhite);}
+
+ /*********************************************** O R D E R *********************************************/
+.products,.orders,.setup,.analiz{padding: 5px ;border:1px solid rgba(0, 0, 0, 0.132) ; margin: 5px;}
+
+
+    .cardOrder{display:flex;flex-direction: column;justify-content: center;align-items: center;}
+    .search{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    input{margin: 20px;font-family: var(--font-family);place-content: 26px;height:50px;}
+
+
+
+   
+    .tblOrders thead{display: none;}
+    .tblOrders table,.tblOrders tbody,.tblOrders tr{display: block;width: 90dvw;}
+    .tblOrders tr{
+                
+                    width: 90dvw;
+                    box-sizing: border-box;
+                    margin: 10px 0;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: var(--shadowL);
+                    background-color: white;
+                    cursor: pointer;
+                    border-bottom: 1px solid gray;  
+                    
+                }
+
+    .tblOrders td{
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 8px;
+        border: none;       
+        text-align: left;     
+        font-size: var(--size2);
+
+    }
+
+    .tblOrders td::before{
+        content: attr(data-title);
+        gap: 5px;
+        font-size: var(--size1);
+        font-weight: bold;
+        color: var(--colorTextLight);
+
+        
+    }
+
+
+/***************************************### end order ####********************************/
+
+/***************************************  S E T U P *********************************************/
+
+.cardSetup{
+width: 100%;
+padding: 20px;
+
+}
+.occasion{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            box-sizing: border-box;
+            max-width: 93dvw;
+            min-width: 93dvw;
+}
+
+#tblOccasion tbody tr td {
+    padding: 5px 5px;
+    font-size: var(--size2);    
+}
+#tblOccasion tbody tr{border-bottom: #333;}
+
+
+
+            
+        }
+
+
+
+
+
+        /***************************************************************************************************/
+        /**************************************** E N D M O B I L E ***************************************************/
+        /***************************************************************************************************/
+
+
+@media (min-width:950px) {
+    
+       
+        .container{
+            width: calc(100% - 151px);
+            height: auto;
+            border-right: 3px solid rgb(195, 228, 195);
+            border-top: 3px solid black;
+            margin-right:150px;
+           
+        }
+
+        .menu{
+            background-color: rgb(92, 91, 91);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            right: 0;
+            position: absolute;
+            
+            gap:20px;
+            font-size: medium;      
+            font-family: var(--font-family);
+            font-weight:bold;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            
+            
+        }
+        .menu>div{width: 100%;height: auto;padding: 40px 25px  ;background-color: rgba(183, 183, 184, 0.501);border-radius: 15px;}
+        .menu >div:hover{            
+            border-radius: 11px;
+            background-color: rgb(201, 201, 201);
+            cursor: pointer;color:white;
+        }
+
+        .cart{width: 500px;height: 500px;background-color: rgb(0, 255, 38);
+                margin: 100px;
+                }
+         .cardProduct{
+            display: flex;    
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            
+            box-sizing: border-box;
+            width:100%;
+            height: 100%;           
+           
+               
+                  
+         }       
+         .cardOrder{display:none;}
+         .btnNewProduct{
+            position: fixed;
+            right: calc(151px + 10px);
+            top: 105px;
+            padding: 10px 5px;
+            font-family: var(--font-family);
+            margin: 2px;
+            border-radius: 15px;
+            border: 1 solid white;
+            background-color: var(--colorBottun);
+            color: white;
+         }
+         .cardNewProduct{            
+            display: none;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;                       
+            padding:20px;            
+            font-size: larger;
+            box-shadow:var(--shadowL);
+            border: 1px solid lightgray;
+            border-radius: 30px;    
+            max-height: 100%;       
+            max-width: 100%;
+            height: 90%;
+            width: 600px;
+            
+            
+            padding: 10px;
+
+
+            box-sizing: border-box;
+           
+
+        }
+        
+        .cardNewProduct>div>div>div>div>input,button,select{
+            font-family: var(--font-family);            
+            font-size: 14px;
+            border-radius: 8px;
+            border: 2px solid lightgray;
+            padding: 10px;          
+            
+        }
+
+        button{cursor: pointer;}
+
+        .btnAddProduct{
+            background-color: hsl(220, 73%, 88%);
+            color: black;
+            padding: 10px 20px;
+            
+        }
+
+       .btn2:hover, .btnAddProduct:hover{box-shadow: var(--shadow3);}
+        .btn2:active,.btnAddProduct:active{scale: .9;}
+
+        .divAddBtnBack{
+            display: flex;
+            flex-direction: row !important;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        
+        .btnAddPic{
+            padding:50px;
+            margin: 100px;
+            border: 2px dashed black;
+            background-size: cover;
+        }
+
+        .imgGray{
+                display: inline-block;
+                transform: scale(2);
+                filter: grayscale(100%);
+            }
+        .imgGray:hover{filter: brightness(.5);}
+        .imgGray:active{filter: brightness(.8);scale: .9;}
+
+        #divAddPic{
+            display:flex;
+            flex-direction: column;
+            width:110px;
+            height: 150px;
+            flex-wrap: wrap;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            
+            border: 1px solid rgba(141, 139, 139, 0.268);
+            border-radius: 15px;
+            
+        }
+            .preview{ 
+                width: 100px;
+                height: 100px;
+                object-fit: contain;
+                border: 1px solid rgba(208, 208, 208, 0.268);
+                border-radius: 15px;
+                background-color:lightgray;
+                box-shadow: var(--shadowD);
+
+            }
+            .previewInTlb{
+                display: block;;
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+                border: 1px solid black;
+                border-radius: 5px;
+                
+            }
+            .divPicAndName{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 10px;
+            }
+            .btnDelPic{
+                border-radius: 50%;
+                overflow: hidden;              
+                color: red;
+                height:20px;
+                width:20px;
+                padding: 0;
+                font-weight: bold;
+            }
+
+            .btnDelPic:hover{font-weight: bolder;scale: .95;}
+            .btnDelPic:active{scale: .9;}
+
+            .btn2{
+                background: none;
+            }
+
+
+            .dialogBox{
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                z-index: 10000;
+                width: 40%;
+                height: 30px;
+                right: 30%;
+                left: 10%;
+                top: 120px;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                border-radius: 5px;
+                border: 1px solid #57535326;
+            }
+
+   
+
+/* استایل سلول‌ها */
+.tableBox th,
+.tableBox td {
+    padding: 10px 40px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    width: 15%;
+    
+    vertical-align:middle;
+   
+}
+
+td{font-size: 12px;}
+
+/* عنوان‌ها */
+ thead th{
+    background-color: #cccaca;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    position: sticky;
+    top: 0;
+    height: 13px;
+    z-index: 50;
+    border-collapse: collapse;
+
+    
+}
+
+tr:nth-child(even){background-color: #eeeded38;}
+
+
+/* افکت ردیف‌ها */
+.tableBox tr:hover {
+    background-color: #e9e7e74a;
+}
+
+
+
+/* واکنش‌گرا */
+.tableBox {
+    display: block;    
+    height: 70dvh;       /*                     اینجا یعنی 70درصدارتفاع صفحه دستگاه */
+    overflow-y: auto;
+    overflow-x: hidden;
+    table-layout: fixed;
+    width:fit-content;
+    box-sizing: border-box;
+    border-radius: 20px 20px;
+    border-collapse: collapse;
+    background-color: #fff;   
+    font-size: 16px;
+    margin: 50px;
+}
+
+
+
+.statusProduct.active{color: green;}
+.statusProduct.inactive{color: gray;}
+.statusProduct.outOfStock{color: red;}
+
+
+.icon-wrap:hover {
+    opacity: 0.75;
+}
+.trash-lid {
+    transform-origin: 4px 6px;
+    transition: transform 0.2s ease;
+}
+.delete-wrap:hover .trash-lid {
+    transform: translateY(-2px) rotate(-8deg);
+}
+
+.cardConfirm{user-select: none;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background-color: white;
+    box-shadow: var(--shadow3);
+    width: 300px;
+    max-width: 90%;
+    padding: 24px;
+    border-radius: 12px;
+}
+.overlay{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff8e;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    position: fixed;
+}
+
+
+#yes,#no{user-select: none;
+    width: 20%;
+    border: 1px solid #a8a4a4;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: var(--shadowD);
+
+   
+}
+#yes:hover,#no:hover,.btnNewProduct:hover{background-color:var(--colorBottun) ; color: white;box-shadow: var(--shadowL);}
+#yes:active,#no:active,.btnNewProduct:active{scale: .9;box-shadow: var(--shadowL);}
+
+.yesNo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    width: 100%;
+}
+
+span.noticeText{
+    display: block;
+    width: 100%;
+}
+
+
+.Error::placeholder{color: red;}
+.Error{border: 1px dashed red;}
+.correct{color: black;border: 1px solid gray;}
+
+
+
+.box{
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    background-color: #333333f0;
+    z-index: 999999;
+}
+.imgPic{
+        object-fit: contain;
+        border-radius: 5px;
+        border:10px dashed #fdfcfcac;
+        box-shadow: var(--shadowWhite);
+        object-fit: contain;
+        max-width: 80vw;
+        max-height: 80dvh;
+    }
+
+.NPpic{
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: black;
+    color:white;
+    padding: 10px;
+    margin: 20px;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+
+
+/***************************************************************************************************/
+/***************************************************************************************************/
+
+
+.cardOrder{
+    width: 100dvw;
+    
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+}
+
+
+    </style>
+</head>
+<body style="font-family: var(--font-family);">
+    <header>
+        <h1>Dashboard Mangement</h1>
+    </header>
+
+
+    <div>
+        <div class= "menu">
+            <div id="btnProduct" class="products" ><span >محصولات</span>  </div>
+            <div id="btnOrder" class="orders"> <span>سفارشات</span> </div>
+            <div id="btnSetup" class="setup"> <span>آماده سازی</span> </div>            
+            <div id="btnAnaliz" class="analiz"> <span>آنالیز</span> </div>
+        </div>        
+
+
+<div class="container">
+
+            <div class="cardProduct" id="cardProduct">                
+                <button class="btnNewProduct" id="btnNewProduct" type="button">+   محصول جدید</button>
+                <form id="cardNewProduct" class="cardNewProduct">
+                    
+                   
+      <div><span id="spanTitle"><h5></h5></span>
+      <span style="font-size: 14px;"><p>  ⚠نکته : اولین تصویر انتخابی -تصویر اصلی- از محصول محسوب میشود</p></span></div>
+      <div style="display: flex;flex-direction: row;">
+
+
+                    <div> <!---->
+                        <div>
+                                        <div style="gap: 10px;display: flex;flex-direction:column; padding: 5px;">
+                                                    <input id="inpCodeProduct" type="text" placeholder="کدمحصول" >
+                                                    <input id="inpNameProduct" type="text" placeholder="نام محصول">
+                                                    <input id="inpPriceProduct" type="text" placeholder="قیمت محصول">
+                                                    <input id="inpQuantityProduct" type="text" placeholder="تعدادموجودی">
+                                                    <div>
+                                                        <label style="font-size:small;color:gray">وضعیت محصول</label>
+                                                            <select id="inpStatusProduct" >
+                                                                <option value="active" style="color: green;">فعال</option>
+                                                                <option value="inactive" style="color: gray;">غیرفعال</option>
+                                                                <option value="out_of_stock" style="color: red;">ناموجود</option>
+                                                                <option value="coming_soon">به زودی</option>
+                                                                <option value="discontinue">متوقف شده</option>
+                                                            </select>
+                                                    </div>
+                                        </div> 
+
+                                                    <div class="divAddBtnBack">
+                                                        <div style="float:right"><button id="btnAddProduct" class="btnAddProduct" type="submit" >افزودن</button></div>
+                                                        <div style="float: left;"><button id="btnBackProduct" class="btn2" type="button" >بازگشت</button></div>
+                                                    </div>
+
+                        </div>
+
+                    </div> 
+                    <div>   
+                                                    <div>
+                                                        <input id="inpAddPic" type="file" name="images" accept="image/jpeg,image/bmp,image/png,image/webp" hidden>
+                                                        <button class="btnAddPic" id="btnAddPic" type="button"><span class="imgGray">+</span></button>
+                                                        <div id="divAddPic"></div>
+                                                    </div>
+
+                    </div>                                
+
+
+      </div><!---->
+                    
+                </form>
+            
+
+
+                
+                    <table id="tbl" class="tableBox">
+                     <thead><tr> <th>کد</th> <th>نام</th> <th>تعداد</th> <th>قیمت</th> <th>وضعیت</th> <th>تصویر</th> <th>عملیات</th> </tr>  </thead>
+
+                     <tbody></tbody>
+                        
+                    </table>
+                
+
+
+
+
+
+
+
+            </div>
+
+
+
+<!-- #region -->
+            <div id="cardOrder" class="cardOrder">
+
+                <div class="search">
+                    <div><input type="search" class="inpSearchOrder" id="inpSearchOrder" placeholder="جستجو " style="text-align: center;"></div>
+                </div>
+
+
+                <div class="tblOrders" id="tblOrders">
+                    <table>
+                        <thead><tr><th>ردیف</th> <th> فرستنده</th> <th>موبایل فرستنده</th> <th>تلفن فرستنده</th> <th>گیرنده</th> 
+                                    <th>موبایل گیرنده</th><th>تلفن گیرنده</th><th>تاریخ تحویل</th><th>ساعت از</th><th>ساعت تا</th><th>نوشته</th><th>آدرس</th> <th>توضیحات</th></tr></thead>
+                    </table>
+                </div>
+
+
+            </div>
+<!-- #endregion -->
+
+
+
+
+<!--SETUP-->
+<div class="cardSetup" id="cardSetup">
+    
+
+
+    <div>
+        <form>
+        <div class="occasion" id="occasion">
+            <input type="text" id="inpNameOccasion" placeholder="نام مناسبت">
+            <div> <select id="dayOccasion"></select>/<select id="monthOccasion"></select>/<select id="yearOccasion"></select> </div>
+            <div class="divBt">    
+                      <button class="bt save" type="submit" id="btnOccasionSave">ذخیره</button>
+                      <button class="bt back" type="button" id="btnBackOfOccasion">بازگشت</button>
+            </div>
+            <table id="tblOccasion" class="tblOccasion">
+                <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>مناسبت</th>
+                        <th>تاریخ</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        </form>
+        
+    </div>    
+    
+
+</div>
+
+<!--end Setup-->
+
+
+</div>  
+    
+
+    <div id="dialogBox" class="dialogBox">
+        <span id="msg"></span>
+    </div>
+
+
+
+
+<div class="overlay" id="overlay">
+    <div id="cardConfirm" class="cardConfirm">
+       <span id="Msg"></span>
+        <div class="yesNo">
+                <div id="yes">بلی</div>
+                <div id="no">خیر</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="box" id="box">
+    
+</div>
+
+</body>
+<script src="/admin/dashbordApi.js"></script>
+<script src="/admin/dashbord.js"></script>
+
+</html>

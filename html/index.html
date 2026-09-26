@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <script type="module" src="/public/js/main.js"></script>
+
+    <link rel="stylesheet" href="/public/css/style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        /* =========================
+           FONT
+        ========================= */
+
+       
+
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+
+        /* =========================
+           LANGUAGE FONT
+        ========================= */
+
+        html[lang="fa"] {
+            font-family: var(--font-family);
+        }
+
+        html[lang="en"] {
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 10px;
+
+            position: relative;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+            margin: 0 0 15px 0;
+
+            font-family: var(--font-family);
+            font-size: var(--size2Text);
+
+            text-align: center;
+
+            color: var(--color2TextBlack);
+        }
+
+
+        /* =========================
+           LANGUAGE SWITCH
+        ========================= */
+
+        .language-switch {
+
+           
+            direction: ltr;
+            align-self: flex-end;
+            position: absolute;
+            left: 10px;
+            right: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 7px;
+
+            width: max-content;
+            height: 36px;
+
+            padding: 4px 9px;
+
+            border: 1px solid var(--background4GrayDark);
+            border-radius: 20px;
+
+            background-color: var(--background2Black);
+            color: var(--color1TextWhite);
+
+            font-family: var(--font-family);
+            font-size: 10px;
+
+            cursor: pointer;
+
+            transition: background-color 0.25s ease;
+        }
+
+        .language-switch:hover {
+            background-color: var(--background4GrayDark);
+        }
+
+
+        /* =========================
+           LANGUAGE SLIDER
+        ========================= */
+
+        .language-slider {
+
+            position: relative;
+
+            width: 42px;
+            height: 24px;
+
+            flex-shrink: 0;
+
+            border-radius: 20px;
+
+            background-color: var(--background4GrayDark);
+        }
+
+
+        /* =========================
+           LANGUAGE CIRCLE
+        ========================= */
+
+        .language-circle {
+
+            position: absolute;
+
+            top: 2px;
+            right: 2px;
+
+            width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+
+            background-color: var(--color1TextWhite);
+
+            transition: transform 0.3s ease;
+        }
+
+
+        /* English */
+
+        html[lang="en"] .language-circle {
+            transform: translateX(-18px);
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .menu {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: stretch;
+
+            gap: 5px;
+
+            padding: 8px;
+
+            font-family: var(--font-family);
+            font-size: var(--size2Text);
+
+            background-color: var(--background2Black);
+
+            color: var(--color1TextWhite);
+        }
+
+
+        /* =========================
+           MENU LINKS
+        ========================= */
+
+        .menu a {
+
+            width: 100%;
+
+            padding: 10px;
+
+            text-align: center;
+
+            border-radius: var(--borderRadius5);
+        }
+
+
+        .menu a:hover {
+
+            background-color: var(--background4GrayDark);
+
+            font-weight: var(--bold);
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           DESKTOP
+           Mobile First
+        ========================= */
+
+        @media (min-width: 768px) {
+
+            header {
+
+                min-height: 100px;
+
+                flex-direction: row;
+
+                justify-content: center;
+
+                padding: 20px;
+            }
+
+
+            h1 {
+
+                margin: 0;
+
+                font-size: var(--size3Text);
+            }
+
+
+            /* سوییچ در دسکتاپ سمت چپ */
+
+            .language-switch {
+
+                position: absolute;
+
+                left: 10px;
+            }
+
+
+            /* منوی افقی */
+
+            .menu {
+
+                flex-direction: row;
+
+                align-items: center;
+
+                justify-content: center;
+
+                gap: 20px;
+
+                padding: 10px;
+            }
+
+
+            .menu a {
+
+                width: auto;
+
+                padding: 8px 12px;
+            }
+
+        }
+
+    </style>
+
+
+    <title data-i18n="titleMainPage"></title>
+
+</head>
+
+
+<body background="/public/image/imageBackground.png">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <h1 data-i18n="titleMainPage"></h1>
+
+
+        <!-- Language Switch -->
+
+        <button
+            id="changeLanguage"
+            class="language-switch">
+
+            <span>FA</span>
+
+            <span class="language-slider">
+
+                <span class="language-circle"></span>
+
+            </span>
+
+            <span>EN</span>
+
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="menu">
+
+        <a data-i18n="menu1Album" href="/public/html/album.html"></a>
+
+        <a data-i18n="menu2SaveOrder"></a>
+
+        <a data-i18n="menu3Follow"></a>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main>
+
+        <!-- محتوای اصلی سایت اینجا -->
+
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="module" src="/public/js/main.js"></script>
+    
+    <link rel="stylesheet" href="/public/css/style.css">
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="album"></title>
+
+
+    <style>
+
+        body{
+            background-color: var(--background1Black);
+            font-family: var(--font-family);
+        
+        }
+    #detailName{font-weight: var(--bold);}
+   #detailCode,#detailPrice{font-size: var(--size2Text)}     
+
+
+
+
+            .selectImage{               
+                padding:0 0 0 0;
+                width: 500px;
+                height: 500px;
+                object-fit: cover;
+                border: 1px solid var(--colorGreen);
+            }
+
+
+
+            .tab{
+                display: flex;
+                justify-content: center;              
+                text-align: center;
+                width: 150px;                
+                background-color: var(--background2Black);
+                font-family:var(--font-family);
+                color: var(--color1TextWhite);
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .container{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                margin-top: 20px;
+                
+            }
+
+
+           span, .btGo{
+                cursor: pointer;
+                font-size: var(--size3Text);
+            
+            }
+
+            .btGo{
+                background-color: var(--background2Black);
+                color: var(--color1TextWhite);
+                border: none;
+                padding: 10px 20px;
+                border-radius: 36px;
+                font-family: var(--font-family);
+                height: 50px;
+                margin: 20px;
+
+            }
+
+            .btGo:hover{
+                scale: .97;
+            }
+
+            .btGo:active{
+                background-color: var(--background4Gray);
+                color: var(--color2TextBlack);
+            }
+
+
+
+            .imgLeft,.imgRight{
+                width: 100px;height: 100px;border: 3px solid var(--background2Black);filter: blur(2px);margin: 10px;object-fit: cover;
+            }
+            .imgCenter{object-fit: cover;width: 150px;height: 150px;}
+
+            .spansDetail{
+                display:flex;flex-direction: column;margin: 5px;justify-content: center;align-items: center;
+                border: 1px solid var(--colorGreen);border-radius: 5px;
+                padding: 20px;
+                background-color: var(--background3LightGray);
+            }
+            .divDetail{
+                 display:inline-flex;flex-direction: row;align-items: center;
+                 border: 0px solid var(--colorGreen);border-radius: 5px;
+                 
+    }
+
+
+  
+img{object-fit: cover;border-radius: 10px;}
+.triple{background-color: var(--background3LightGray);border-radius: 20px;border:1px solid var(--colorGreen);align-items: center;}
+
+.incDec {
+    border: 1px solid var(--background4Gray);
+    text-align: center;
+    width: 20px;
+    font-weight: bolder;
+    font-size: var(--size2Text);
+    margin-inline:5px;
+    
+}
+
+
+
+.counterAndFastOrder{display: flex;flex-direction: row;justify-content: space-between;width: 100%;}
+.orderOptions{
+    display: grid;
+    grid-template-columns: max-content;
+    width: max-content;
+}
+.orderOptions > div:first-child{white-space: nowrap;}
+.orderOptions > div:last-child{width: 100%;margin-top: 5%;}
+.orderOptions > div:last-child span{border-radius: 5px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.detail{display: flex;flex-direction: row;justify-content: center;align-items: center;}
+
+.container{display: flex;align-items:flex-start;gap: 20px;}
+
+.listOrder *{font-size: var(--size2Text);}
+.listOrder {margin: 10px;border-radius: 10px;border: 1px solid var(--colorGreen);background-color: var(--background3LightGray);}
+.listOrder >div:nth-child(even){background-color: var(--background5GrayDark) !important;}
+.btnListOrder{display: none;}
+
+.incDec{cursor: pointer;}
+.btnAdd,.spanOrderThis{display: inline-block;align-self: self-end;color:var(--color1TextWhite);background: var(--background2Black);border-radius: 5px;}
+.incDec:active,.btnAdd:active,.spanOrderThis:active,.btnListOrder:active,.orderOptions>div:last-child:active{transform: scale(0.9);}
+.titrProductSelect{display: flex;font-weight: bolder;}
+.titrProductSelect>span{flex: 1;text-align: center;cursor:unset;}
+.selectImage{box-shadow:
+    0 5px 10px rgba(0,0,0,0.9),
+    0 -5px 10px rgba(0,0,0,0.9);}
+
+    .X{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    .X:hover{scale:1.1;background: transparent;font-weight: bolder;}
+    .X:active{scale: 0.9;}
+
+
+/*                                شروع رسپانسو                */
+
+
+
+
+
+
+@media(max-width:650px)  {
+#next,#prev{font-size: 0;}
+    #next::after{content: '<';font-size: var(--size2Text);font-weight: var(--bold);}
+    #prev::after{content: '>';font-size: var(--size2Text);font-weight: var(--bold);}
+
+    html,body{
+        justify-content: center;
+        box-sizing: border-box;        
+        overflow-x: hidden;
+        width: 100vw;
+
+    }
+
+
+    body,.container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        
+        
+        
+    }
+
+    .imgLeft,.imgRight{
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        
+    }
+    .imgCenter{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    .triple{
+        gap: 3px;
+        width: 100%;
+        
+        object-fit: cover;
+    }
+
+   
+    .divDetail{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        row-gap: 20px;
+    }
+
+    .selectImage{
+        display:block !important;
+        width: 100vw !important;
+        height: 400px;
+        max-width: 98%;        
+        box-sizing: border-box;
+        object-fit: cover;
+        
+    }
+
+    
+
+    .spansDetail{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: var(--background0Trans)!important;
+        gap: 2px;
+        
+    }
+    .spanOrderThis::after{
+
+       align-self: center !important;
+       margin-bottom: 15px;
+       content:attr(data-i18n2="orderFastMOBILE")!important;
+        
+
+    }
+    .counterAndFastOrder{display: flex;flex-direction: column;justify-content: center;gap: 15px;margin:5px;}
+    
+
+.btnListOrder{display: flex;border: 1px solid var(--color2TextBlack);border-radius: 15px;}
+
+.listOrder{
+            position: fixed; bottom: 0;width: 90%;max-height: 50vw;left: 50%;
+            transform: translate(-50%,100%);
+            transition:transform .5s ease ;
+            z-index: 1000;
+        }
+
+.listOrder.show{transform: translate(-50%,0);}
+
+.orderOptions {all:inherit ;}
+.orderOptions>div:last-child{width: 98%;box-sizing: border-box;}
+
+}              <!--پایان رسپانسیو مبایلی-->
+
+    
+
+    
+
+
+
+
+
+
+    </style>
+
+</head>
+
+
+
+
+
+
+
+
+
+<!--///////////////////////////////// HEADER-->
+
+<body>
+    <header>
+        <h1 data-i18n="album"></h1>
+        
+
+
+                    <div class="tab">
+                         <span id="showFlower" data-i18n="flower"></span>
+                        |<span id="showAccessories"  data-i18n="accessories"></span>
+                    </div>
+
+
+
+
+    </header>
+
+
+<!-- /////////////////////////////////////////////  ZIR HEADER  
+
+//######################################################################################################## -->
+
+<div id="tabFlower" class="container">   
+    
+            <div class="selectAndFactor">
+
+                    <div class="divSelect">
+                                    <div id="flowerContainer" class="triple">
+                                        
+                                            <button class="btGo" id="next" data-i18n="next"></button>
+
+
+                                            <img id="imgLeft" class="imgLeft" alt="Flower 1">
+                                            <img id="imgCenter" class="imgCenter" alt="Flower 2">
+                                            <img id="imgRight" class="imgRight" alt="Flower 3">
+
+
+                                            <button class="btGo" id="prev" data-i18n="prev"></button>
+
+                                    </div> 
+
+                                    <div class="detail">                
+                                            
+                                            
+                                        
+                                            <div class="spansDetail">
+                                                <span id="detailName" data-i18n="productName"></span>
+                                            <div style="background-color:var(--background4Gray); border-radius: 10px;"> <span id="detailPrice" data-i18n="money"></span></div>
+                                                <span id="detailCode" data-i18n="productCode"></span>
+                                            </div>
+                                    </div>
+                            
+                                    
+
+                    </div>
+
+                    <div class="listOrder" id='listOrder'>
+                       <div class="titrProductSelect" id="iii" > <span data-i18n="row"></span><span data-i18n="name"></span><span data-i18n="quantity"></span><span data-i18n="price"></span></div>
+                    </div>
+            </div>  
+
+
+
+
+     <div class="divDetail">
+
+
+
+                    <div class="bigPicFastOrder" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">  
+                                            <div>
+                                                <img id="selectImage" class="selectImage" >
+                                            </div>
+
+
+
+
+
+                                            <div class="counterAndFastOrder">
+                                                            <div >
+                                                                <span class="spanOrderThis"
+                                                                    
+                                                                    data-i18n="orderFast" data-i18n2="orderFast"></span>
+                                                            </div>
+
+                                                            <div class="orderOptions">
+                                                                <div >
+                                                                    <button id="inc" class="incDec" type="button">+</button>
+                                                                    <span id="counter">1</span>
+                                                                    <button id="dec" class="incDec" type="button">-</button>
+
+                                                                    <span id="btnAdd" class="btnAdd" data-i18n="orderAdd"></span>
+                                                                 </div>
+                                                                 <div><span onclick="location.href='orderSave.html'" style="background:black;color: var(--color1TextWhite);width: inherit;" data-i18n="orderSave"></span></div>               
+                                                            </div>
+                                            </div>
+                            
+                    </div>
+
+
+
+
+
+         
+    </div> <!--divDetail-->
+<div class="btnListOrder" id="btnListOrder"  data-i18n="showListOrder"></div>
+
+</div>
+
+<!-- ################################################################################################ -->
+
+
+
+
+
+
+    <div id="tabAccessories" class="container">
+        
+        <div id="accessoriesContainer" class="container">
+
+        </div>
+
+    </div>
+
+
+
+    
+</body>
+<script type="module" src="/public/js/album.js">
+</script>
+</html>
