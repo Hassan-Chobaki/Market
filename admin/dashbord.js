@@ -692,6 +692,8 @@ day.innerHTML='';
         else    optionDay.textContent=i;
        day.appendChild(optionDay) ;
 
+       optionDay.value=optionDay.textContent;
+
     }
 
     for(let i=1;i<=12;i++)
@@ -701,6 +703,8 @@ day.innerHTML='';
         if(i<10) optionMonth.textContent='0'+i;
         else optionMonth.textContent=i;
        month.appendChild(optionMonth);
+
+       optionMonth.value=optionMonth.textContent;
     }
     
     

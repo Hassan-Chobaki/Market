@@ -3,13 +3,43 @@ import {translation} from "/public/js/lang.js";
 
 
 
+let numRow = 0;
+let item = 0;
+let arrProduct;
+
+
+
+
+
+
+
+function loadCart(){
+
+try{
+        const crt = JSON.parse(localStorage.getItem('cart') || []);
+        return new Map(Array.isArray(crt)?crt:[]);
+}catch{
+        localStorage.removeItem('cart');
+        return new Map;
+}
+
+}
+let cart=loadCart();
+renderCart();
+
+
+
+
+
+
+
 document.getElementById("showFlower").addEventListener("click",showFlower);
 document.getElementById("showAccessories").addEventListener("click",showAccessories);
 document.getElementById("next").addEventListener("click",next);
 document.getElementById("prev").addEventListener("click",prev);
-document.getElementById("imgRight").addEventListener("click",prev);
-document.getElementById("imgLeft").addEventListener("click",next)
-document.addEventListener("DOMContentLoaded", arrange);
+document.getElementById("imgRight").addEventListener("click",next);
+document.getElementById("imgLeft").addEventListener("click",prev)
+//document.addEventListener("DOMContentLoaded", arrange);
 document.getElementById('inc').addEventListener("click",inc);
 document.getElementById('dec').addEventListener("click",dec);
 document.getElementById('btnListOrder').addEventListener("click",showListOrder);
@@ -25,15 +55,84 @@ document.getElementById('listOrder').addEventListener("click", event => {
 
 document.getElementById('btnAdd').addEventListener("click",()=>{AddProduct(document.getElementById("counter").textContent)});
 
+const orderSave=document.getElementById('orderSave');
+const orderThis=document.getElementById('orderThis');
 
 
-let numRow=0;
-let item=0;
-const arrProduct= [
-                           ['فاخر',1000000,'10',0,''],
-                           ['اشراف',200000,'20',0,''],
-                           ['کلاسیک',300000,'30',0,''],
-                           ['برتر',400000,'40',0,'']];
+
+
+
+
+                            orderThis.addEventListener('click',()=>{
+                                cart.clear();
+                                localStorage.removeItem('cart');
+
+
+
+                                cart.set(
+                                         arrProduct[item][2], {
+                                                                name: arrProduct[item][0],
+                                                                code: arrProduct[item][2],
+                                                                price: arrProduct[item][1],
+                                                                quantity: 1,
+                                                                src: arrProduct[item][4]
+                                });
+
+
+
+
+                                localStorage.setItem('cart',JSON.stringify([...cart]));
+
+                                window.location.href = '/public/html/orderSave.html';
+
+                            });
+
+
+
+
+
+
+
+                            orderSave.addEventListener('click',()=>{
+                                if(cart.size<=0)
+                                {
+                                    const msgError=document.getElementById('messageBox');
+
+                                    if(currentLang==='fa')
+                                        document.getElementById('message').innerHTML =`    ⚠&nbspلطفاابتدابادکمه <span style="color:white;font-weight:bold"> 🛒افزودن </span>یک محصول را به سبدخریداضافه بفرمایید`;
+                                    else
+                                        document.getElementById('message').innerHTML = `Please press the <span style="color:white;font-weight:bold"> 🛒Add </span> button first to add the product to your cart.`;
+                                    msgError.classList.remove('show');
+                                    void msgError.offsetWidth;
+                                    msgError.classList.add('show');
+                                    
+                                }
+                                else
+                                    window.location.href='/public/html/orderSave.html';
+                            })
+
+
+
+
+
+
+
+                const response=await fetch('/product/show',{method:'GET'});
+                const result=await response.json();
+                console.log('Arr Product=',result);
+
+                arrProduct=result.map(row=>{return[row.name,row.price,row.code,0,`/public/image/flower/${row.code}/thumb.webp`]});
+
+
+
+
+let arrayOfAddressImage = Array();
+for (let row of arrProduct) {
+    arrayOfAddressImage.push(`/public/image/flower/${row[2]}/thumb.webp`);
+    console.log('row=', row);
+}
+
+
 
 
 
@@ -52,34 +151,20 @@ const arrProduct= [
 
 
 
-
-
-
-
-
-
-
 function showListOrder(){
     document.getElementById('listOrder').classList.add('show');
 }
 
-function inc(){
-
- 
+function inc(){ 
     let counter=document.getElementById('counter').textContent.trim();
-    
-
-    counter=parseInt(counter,10);
-    
+    counter=parseInt(counter,10);    
     counter++;
     if(counter>9) return;
     
-    document.getElementById('counter').textContent=counter;   
-
+    document.getElementById('counter').textContent=counter; 
 }
 
-function dec(){
-    
+function dec(){    
     let counter=Number(document.getElementById('counter').textContent);
     if(counter-1<1) return;
     document.getElementById('counter').textContent=counter-1;
@@ -88,38 +173,17 @@ function dec(){
 
 
 
-    let arrayOfAddressImage=Array(
-                            "/public/image/flower/flower0.jpg",
-                            "/public/image/flower/flower1.jpg",
-                            "/public/image/flower/flower2.jpg",
-                            "/public/image/flower/flower3.jpg",
-
-    ); 
-
-for(let j=arrayOfAddressImage.length-1;j>=0;j--){
-arrProduct[j][4]=arrayOfAddressImage[j];
-}
-     
-
-
 function showItem(array){
+    const count = arrayOfAddressImage.length;
 
+    if(count===0) return;
+
+    item=( (item%count)+count) % count;
     
-        if((item>arrayOfAddressImage.length-1))
-            item=0;
-        else if(item<0)
-            item=arrayOfAddressImage.length-1;
-        array[0].src=arrayOfAddressImage[item];   
-
-        if((item+1>arrayOfAddressImage.length-1))     
-            item=0;
-        else item++;        
-        array[1].src=arrayOfAddressImage[item];
-
-        if((item+1>arrayOfAddressImage.length-1))
-            item=0;
-        else item++;
-        array[2].src=arrayOfAddressImage[item];
+    
+    array[0].src = arrayOfAddressImage[(item + 1) % count];
+    array[1].src = arrayOfAddressImage[item];
+    array[2].src = arrayOfAddressImage[(item - 1 + count) % count];
 
     
 document.getElementById('selectImage').src=array[1].src;
@@ -132,14 +196,16 @@ document.getElementById('selectImage').src=array[1].src;
     
         spanDetailName.innerText=arrProduct[item][0];
 
-      if(localStorage.getItem('lang')==='fa'){
+      
+
+      if(currentLang==='fa'){
         spanDetailPrice.textContent="تومان "+"\u2003 "+Number(arrProduct[item][1]).toLocaleString("fa-IR");
-        spanDetailCode.textContent=" کد"+"\u2003 "+arrProduct[item][2];
+       // spanDetailCode.textContent= "***";// " کد"+"\u2003 "+arrProduct[item][2];
 
 
       }
       else{
-           spanDetailPrice.textContent=arrProduct[item][0]+'$';
+           spanDetailPrice.textContent=arrProduct[item][1]+'$';
            spanDetailCode.textContent=arrProduct[item][2]+'\u2003'+ 'code';
 
       }
@@ -167,14 +233,14 @@ showItem(arrayFrame);
 
 function next(){
     
-    item++;
+    item--;
     showItem(Array.from(flowerContainer.getElementsByTagName('img')));
 
 
 }
 
 function prev(){
-    item--;
+    item++;
     showItem(Array.from(flowerContainer.getElementsByTagName('img')));
 }
 
@@ -206,7 +272,7 @@ function showAccessories(){
 //************************************************************************************
 // ******************************************************************************** */
 
-let cart=new Map(JSON.parse(localStorage.getItem('cart')|| '[]' ));     renderCart();
+
                                                                       
 function AddProduct(quantity){
     
@@ -270,3 +336,5 @@ function delRow(code) {
    renderCart();
    localStorage.setItem("cart", JSON.stringify([...cart]));
 }
+
+arrange();

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>پرداخت</title>
+
+<style>
+    body,button,input{font-family: var(--font-family);}
+    main{display:flex;flex-direction: column;justify-content: center;align-items: center;}
+
+.success{
+    font-size: 12px;
+    color: green;
+    background-color: rgba(0, 128, 0, 0.09);
+    border:1px solid rgb(165, 224, 165);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#payment{
+    display: flex;flex-direction: column;justify-content: center;align-items: center;
+    border:1px solid rgba(128, 128, 128, 0.222);
+    width: 55%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.192);
+    margin: 50px;
+}
+#card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#paymentMethod{color: rgb(1, 105, 1);font-size: 16px;font-weight:bold;}
+.copy{background-color: rgba(0, 0, 0, 0.14);text-align: center;border-radius: 5px;cursor: pointer;width:50px;font-size:12px;font-weight: bold;color:rgba(49, 48, 48, 0.673);}   
+.copy:active{background-color: rgba(0, 0, 0, 0.092);}
+
+
+.trCodeTotalPrice{border: 1px solid rgba(0, 0, 0, 0.092);border-radius: 10px;display: flex;flex-direction: column;   }
+
+.codePrice{display: flex;flex-direction: row;justify-items:start;align-items:start;gap: 100px;}
+
+
+#cardNumber{display: flex;flex-direction: column;justify-items:center;align-items:center  ;gap: 10px;
+            width:max-content;height: auto;border-radius: 10px;padding:30px 20px 30px 20px;margin: 10px;
+             font-size: clamp(15px, 6vw, 30px); font-weight: bold; color: rgb(1, 105, 1);
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.492);}            
+
+#divUploadReceipt{display: flex;flex-direction: column;justify-items:center;align-items:center;
+                  border-radius: 10px;padding:50px 10px;margin: 10px;
+                  font-size: clamp(15px, 1vw, 20px); font-weight: bold; color: rgb(1, 105, 1);
+                  border: 2px dashed green;cursor:pointer;}
+
+#divUploadReceipt:hover{background-color: rgba(0, 128, 0, 0.09);}
+#divUploadReceipt :active{background-color: rgba(0, 128, 0, 0.09);}                  
+
+#receipt{display: flex;flex-direction: column;justify-items:center;align-items:center  ;gap: 10px;
+        border:2px solid black;border-radius: 10px;padding:20px 20px 20px 20px;margin: 10px;}
+
+#divCardPayment{display: grid;}
+#divCashPayment{display: flex;flex-direction: column;justify-content: center;align-items: center;}
+
+#picReceipt{
+            max-width: 90%;max-height: 350px;
+            width: auto;height:auto;object-fit:contain;display: none;}
+
+
+
+#tabs{display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 10px;margin-top: 2px;}
+button{background-color: #016901;color:white;border:5px solid transparent;border-radius:5px;padding:5px;margin-top:10px;cursor:pointer;font-weight: bold;width: 100px;}
+
+.btnMethod{background-color:#22c55e ;color: #d2ffd2;font-weight: bold;}
+.btnActive{background-color:#016901 ;color: white;font-weight: bold;}
+
+.wait{background-color: rgb(166, 166, 166);color: rgb(86, 84, 84);cursor: not-allowed;}
+
+
+.btnPay{width: 90%;max-width: max-content;font-size: 18px;margin: 20px;box-shadow: var(--shadowL);white-space: nowrap;}
+
+#btnGatewayPayment{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+.endPay{font-size: 10px;font-weight: normal;color: #ffffffcd;}
+
+.latinTrcode{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    direction: ltr;
+    letter-spacing: 5px;    
+    unicode-bidi: isolate;
+}
+/*
+.congratulations[open],.divBox{display: flex;flex-direction: column;justify-content: center;align-items: center;
+                        width: 100%;height: 100%;}
+.cong{width: max-content;}    */
+
+.congratulations{
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    width: min(92vw, 400px);
+    overflow: hidden;
+}
+.congratulations[open]{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.congratulations::backdrop{
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.art{
+    position: relative;
+    width: 100%;
+    height: 330px;
+}
+
+.circle{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+.c1{width: 320px; height: 320px; background: #22c55e26;}
+.c2{width: 250px; height: 250px; background: #22c55e59;}
+.c3{width: 180px; height: 180px; background: #016901aa;}
+
+.center{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+}
+.bigTick{
+    font-size: 80px;
+    line-height: 1;
+    font-weight: bold;
+    color: #fff;
+}
+.thanks{
+    font-size: 18px;
+    font-weight: bold;
+    color: #d2ffd2;
+    white-space: nowrap;
+}
+
+.star{position: absolute; color: #22c55e; z-index: 1;}
+.s1{top: 8%;  left: 12%; font-size: 22px;}
+.s2{top: 5%;  left: 70%; font-size: 16px;}
+.s3{top: 40%; left: 2%;  font-size: 14px;}
+.s4{top: 45%; left: 92%; font-size: 24px;}
+.s5{top: 85%; left: 18%; font-size: 18px;}
+.s6{top: 88%; left: 78%; font-size: 14px;}
+
+.congButtons{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+.congButtons button{width: 100%; margin-top: 0;}
+
+/************************************************************************************************/
+
+
+@media (max-width:728px) {
+    #payment{width: 95dvw;}
+    #cardNumber{width:70dvw;}
+    .copy{height: 20px;padding-top:3px;}
+    
+}
+
+
+</style>
+
+</head>
+<body>
+<main>
+<div class="success"><span>  سفارش شماثبت شد؛روش پرداخت راانتخاب کنید✓</span></div>
+<div><span id="paymentMethod">روش پرداخت </span ></div>
+
+<div id="tabs">
+
+    <div><button class="btnMethod" type="button" id="btnCash"> درمحل(حضوری)</button></div>
+
+    <div><button class="btnMethod" type="button" id="btnCard"> کارت به کارت</button></div>
+
+    <div><button class="btnMethod" type="button" id="btnGateway"> درگاه بانکی</button></div>
+
+</div>
+
+
+<span class="spanDetailMethod" id="spanDetailMethod" style="margin-top: 10px;font-size: 12px;"></span>
+
+
+
+<section id="payment">
+
+    <div id="card">
+
+        <div class="codePrice">
+            <div class="trCodeTotalPrice" style="padding:20px 20px 0 20px;margin: 10px;"><span style="font-size: 12px;margin: 0;">کدپیگیری</span><span id="spanTrCode" class="latinTrcode" style="color:rgb(1, 105, 1) ;">UM5D</span> <span class="copy" id="spanTrCodeCopy" onclick="copyText('spanTrCode')">کپی</span></div>            
+            <div class="trCodeTotalPrice" style="padding:20px 20px 0 20px;margin: 10px;"><span style="font-size: 12px;margin: 0;">مبلغ کل</span><span id="spanTotalPrice" style="font-size: clamp(14px, 4vw, 20px); color: rgb(1, 105, 1);white-space: nowrap;">2500000<span >تومان</span></span><span class="copy" id="spanTotalPriceCopy" onclick="copyText('spanTotalPrice')">کپی</span></div>
+        </div>
+        
+
+    </div>
+
+
+
+
+
+                                        <!--cash-->
+
+
+
+
+
+
+    <div id="divCashPayment" style="display: none;">
+                
+                
+                    <p style="font-size: 12px; text-align: center;"><span
+                            style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#22c55e;color:#fff;">
+                            ✓</span>لطفا کدپیگیری را زمان تحویل محصول به پیک اعلام بفرمایید</p>
+                    <p style="font-size: 12px; text-align: center;"><span
+                            style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#22c55e;color:#fff;">
+                            ✓</span>مااطمینان میدهیم در ساعت <span id="time" style="font-weight: bold;"></span> در تاریخ <span id="date"
+                            style="font-weight: bold;"></span> به آدرس <br><span id="address" style="font-weight: bold;direction: rtl;"></span>
+                        سفارشتان تقدیم شود</p>
+                
+                <button class="btnPay" id="btnCashPay" type="button">  تایید و ثبت نهایی <small class="endPay">(پایان خرید)</small>&nbsp;
+                    <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#22c55e;color:#fff;">✓</span>
+                </button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                <!--card-->
+
+
+    <div id="divCardPayment" style="display: none;">
+        <p style="font-size: 12px;">لطفا مبلغ را به شماره کارت زیر واریز بفرمایید</p>
+        <div id="cardNumber">
+            <span style="font-size: 12px;">شماره کارت </span><span id="spanCardNumber" style="color: rgb(1, 105, 1);direction: ltr;">6037-7016-2936-0097</span><div style="font-size: 12px;">حسن چوبکی</div> <span class="copy" id="spanCardNumberCopy" onclick="copyText('spanCardNumber')">کپی</span>
+        </div>
+
+                    <div id="receipt">
+                        <input id="uploadReceipt" type="file" hidden accept="image/*" style="display: none;">                        
+                        <div id="divUploadReceipt"> <img id="picReceipt"><div id="spanSelect"> <span>انتخاب رسید</span><span style="font-size: 10px;">[کلیک کنید]</span></div></div>
+                        <button class="btnPay" id="btnUploadReceipt" >ثبت و ارسال رسید <small class="endPay">(پایان خرید)</small>&nbsp;
+                                
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#22c55e;color:#fff;">✓</span>
+                        </button>
+                        <span id="errorShow" style="color:red;font-weight: bold;font-size: 10px;"></span>
+                    </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                <!--gateway -->
+
+
+
+    <div id="divGatewayPayment" style="display: none;">
+        <p style="font-size: 12px;">لطفا برای پرداخت هم اکنون آنلاین روی دکمه زیر کلیک کنید</p>
+        <div id="gatewayButton" style="border: 1px solid rgba(0, 0, 0, 0.092);border-radius: 10px;display: flex;flex-direction: column;padding:20px 20px 0 20px;">
+            <span style="font-size: 12px;margin: 0;">پرداخت آنلاین</span>
+            <button class="btnPay" id="btnGatewayPayment" >رفتن به درگاه امن
+
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#22c55e;color:#fff;">
+                    
+
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" style="display:inline-block;vertical-align:20px;">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+    </svg>
+
+
+                </span>
+
+            </button>
+        </div>
+    </div>
+    
+</section>
+
+
+
+<dialog class="congratulations" id="congratulations">
+    <div class="art">
+        <span class="circle c1"></span>
+        <span class="circle c2"></span>
+        <span class="circle c3"></span>
+
+        <span class="star s1">★</span>
+        <span class="star s2">✦</span>
+        <span class="star s3">★</span>
+        <span class="star s4">✦</span>
+        <span class="star s5">★</span>
+        <span class="star s6">✦</span>
+
+        <div class="center">
+            <span class="bigTick">✓</span>
+            <span class="thanks">تبریک و سپاس از خرید شما</span>
+        </div>
+    </div>
+
+    <div class="congButtons">
+        <button id="btnToMarket" type="button">بازگشت به مارکت</button>
+        <button id="btnToTrack" type="button">رفتن به پیگیری سفارش</button>
+        <button id="btnToMethod" type="button">تغییر روش پرداخت</button>
+    </div>
+</dialog>
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+<script src="/public/js/paymentPage.js"></script>
+</body>
+
+</html>
+
+
+

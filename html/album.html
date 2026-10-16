@@ -160,6 +160,45 @@ img{object-fit: cover;border-radius: 10px;}
     .X:active{scale: 0.9;}
 
 
+.messageBox {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 100%);
+    opacity: 0;
+    pointer-events: none;
+
+    min-width: 220px;
+    max-width: 90%;
+    padding: 14px 28px;
+    border-radius: 14px;
+    background: rgba(30, 30, 30, 0.92);
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+}
+
+.messageBox.show {
+    animation: messageSlide 7s ease forwards;
+}
+
+@keyframes messageSlide {
+    0%   { transform: translate(-50%, 100%); opacity: 0; }
+    12%  { transform: translate(-50%, -30px); opacity: 1; }
+    85%  { transform: translate(-50%, -30px); opacity: 1; }
+    100% { transform: translate(-50%, 100%); opacity: 0; }
+}
+
+
+
+
+
+
+
+
 /*                                شروع رسپانسو                */
 
 
@@ -369,7 +408,7 @@ img{object-fit: cover;border-radius: 10px;}
 
                                             <div class="counterAndFastOrder">
                                                             <div >
-                                                                <span class="spanOrderThis"
+                                                                <span id="orderThis" class="spanOrderThis"
                                                                     
                                                                     data-i18n="orderFast" data-i18n2="orderFast"></span>
                                                             </div>
@@ -382,7 +421,7 @@ img{object-fit: cover;border-radius: 10px;}
 
                                                                     <span id="btnAdd" class="btnAdd" data-i18n="orderAdd"></span>
                                                                  </div>
-                                                                 <div><span onclick="location.href='orderSave.html'" style="background:black;color: var(--color1TextWhite);width: inherit;" data-i18n="orderSave"></span></div>               
+                                                                 <div><span id="orderSave" style="background:black;color: var(--color1TextWhite);width: inherit;" data-i18n="orderSave"></span></div>               
                                                             </div>
                                             </div>
                             
@@ -415,7 +454,7 @@ img{object-fit: cover;border-radius: 10px;}
 
 
 
-    
+   <div id="messageBox" class="messageBox"><span id="message">**************</span></div> 
 </body>
 <script type="module" src="/public/js/album.js">
 </script>

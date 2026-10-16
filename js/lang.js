@@ -42,6 +42,7 @@ export const translation={
                     sumRow:'جمع ردیف',
                     priceTotal:'قیمت کل',
                     orderSave:'ثبت سفارش',
+                    orderSaveContinue:'ثبت و ادامه',
                     back:'بازگشت',
                     
                     nameFamily:'نام و نام خانوادگی',
@@ -77,11 +78,17 @@ export const translation={
                     tommorrow:'برای فردا',
                     occasion:'مناسبتهای تقویمی',
                     setDateOccasion:'  تاریخ تحویل برای؟',
-                    findOnMap:'نقشه',
+                    findOnMap:'انخاب از روی نقشه',
+                    addressComment:' (اختیاری)  توضیح برای پیک تحویل',
                     EtcInfoReciver:'سایراطلاعات▼(اختیاری)',
                     cart:'کارت پستال▼(اختیاری)',
                     userName:'نام کاربری',
                     pass:'رمزعبور',
+                    codeTracking:'کدپیگیری',
+                    copy:'کپی📄',
+                    toltipCopy:'کپی شد',
+                    thisPosition: ' انتخاب مکان',
+                    
                 
                 
                 
@@ -116,6 +123,17 @@ export const translation={
                     priceTotal:'Total',
                     orderSave:'Order',
                     back:'Back',
+                    codeTracking:'tracking code',
+                    copy:'📄 Copy',
+                    toltipCopy:'it\'s copy',
+                    thisPosition:'This Position',
+                    occasion:'Occasion',
+                    setDateOccasion:'Set Date for?',
+                    findOnMap:'Find on Map',
+                    orderSaveContinue:'Order and Continue',
+                    addressComment:'(Optional) Comment for delivery',
+                    EtcInfoReciver:'Etc Info Reciver▼(Optional)',
+                    
                     
                     
                 
