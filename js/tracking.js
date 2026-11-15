@@ -8,7 +8,7 @@ const showError=document.getElementById('showError');
 
 
 let m, c = '';
-
+divList.style.display='none';
 document.addEventListener('DOMContentLoaded',()=>{divList.style.display='none'});
 inpMobile.addEventListener('input',()=>{if((inpMobile.value).length===11)
         inpTrcode.focus();
@@ -33,7 +33,7 @@ if(confirm('?'))
         showError.textContent=('لغوشد');
 
     }else{
-        showError.textContent=('سفارش دیگر قابل تغییر نیست.یا پیدا نشد');
+        showError.innerHTML=(`سفارش دیگر قابل تغییر نیست.یا پیدا نشد<br>ازمرحله لغو گذشته است`);
         return;
 
 
@@ -45,7 +45,7 @@ if(confirm('?'))
 
 
 btnSearch.addEventListener('click',async()=>{
-
+ 
     const mobile = toLatinDigits(inpMobile.value).trim();
     const code = toLatinDigits(inpTrcode.value).trim().toUpperCase();
     divList.style.display = 'none';
@@ -64,9 +64,25 @@ btnSearch.addEventListener('click',async()=>{
 
     }
 showError.textContent='';
+ const result=await funcShowOrder(mobile,code);
 
+    if (! result) {
+         document.getElementById('stepper').style.display = 'none';
+          showError.textContent='چیزی پیدا نشد';
+          return;
+        }
+
+        if(await result.status==='canceled')
+        {
+            document.getElementById('stepper').style.display='none';
+            
+            showError.textContent='سفارش لغو شده است';
+            return;
+        }
+           
 divList.style.display='grid';
-    const result=await funcShowOrder(mobile,code);
+document.getElementById('stepper').style.display = 'flex';
+   
 
 const senderName=document.getElementById('senderName');
 const reciverName=document.getElementById('reciverName');
@@ -92,7 +108,7 @@ mobileSender.textContent=result.mobileSender??'';
 mobileReciver.textContent=result.mobileReciver??'';
 telSender.textContent=result.telSender??'';
 telReciver.textContent=result.telReciver??'';
-dateDelivery.textContent=result.dateDelivery??'';
+dateDelivery.textContent=new Intl.DateTimeFormat('fa-IR').format(new Date(result.dateDelivery))??'';
 timeOf.textContent=result.timeOf??'';
 timeTo.textContent=result.timeTo??'';
 note.textContent=result.note??'';
@@ -101,6 +117,10 @@ note.textContent=result.note??'';
 document.getElementById('dateDelivery').textContent=result.dateDelivery;
 document.getElementById('dateCreated').textContent = result.createdAt;
 
+    document.getElementById('aBack').addEventListener('click', (e) => {
+        e.preventDefault();
+        location.replace(e.currentTarget.href);
+    });
 
 
 m=mobileSender.textContent;c=result.trackingCode;
@@ -144,10 +164,10 @@ m=mobileSender.textContent;c=result.trackingCode;
    
 totalPrice.textContent=result.totalPrice;
 
-hideElement();
+hideElement(); 
+        
 renderStepper(result.status);
     
-console.log(result.status);
 
 })
 
@@ -199,26 +219,27 @@ function renderStepper(status){
 
   
     document.querySelectorAll('.stepper label').forEach((element, i=0) => {
-        element.classList.remove('currentStepp','col');
+        element.classList.remove('currentStepp','col','done');
+        document.getElementById('delivery').classList.remove('currentStepp', 'col');
         
         const divWithClassLine = element.parentElement.nextElementSibling;
 
-if (i === indexCurrent) {
-        document.getElementById(status).classList.add('currentStepp','col');
-        /*document.getElementById(status).style.borderRadius = '10px';
-        document.getElementById(status).style.border = '2px dotted #4db129';
-        document.getElementById(status).style.fontWeight='bold';*/
-        
-    }
+            if (i === indexCurrent) {
+                    document.getElementById(status).classList.add('currentStepp','col');
+                    /*document.getElementById(status).style.borderRadius = '10px';
+                    document.getElementById(status).style.border = '2px dotted #4db129';
+                    document.getElementById(status).style.fontWeight='bold';*/
+                    
+                    
+                    }
+
 
 
 
         if (divWithClassLine?.classList.contains('line') && (i < indexCurrent)) {
-            divWithClassLine.style.border = '2px solid #4db129';    
-
-        }
-
-        
+            divWithClassLine.style.border = '2px solid #4db129';
+            element.classList.add('done');
+        }        
         else
             divWithClassLine.style.border = '1px dashed #00000040';
 

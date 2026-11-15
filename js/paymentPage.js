@@ -110,6 +110,10 @@ function funcCashPayment() {
     divCashPayment.style.display='flex';
     divCardPayment.style.display='none';
     divGatewayPayment.style.display='none'; 
+    btnCash.style.borderBottom='4px solid #f5f5f5';
+    btnCard.style.borderBottom='none';
+    btnGateway.style.borderBottom='none';
+
 
     document.getElementById('spanDetailMethod').textContent='مبلغ سفارش را هنگام تحویل به پیک پرداخت کنید.هیچ پیش پرداختی لازم نیست.';
 }
@@ -203,6 +207,9 @@ function funcCardPayment() {
     divCardPayment.style.display='grid';
     divCashPayment.style.display='none';
     divGatewayPayment.style.display='none';
+    btnCard.style.borderBottom='4px solid #f5f5f5';
+    btnCash.style.borderBottom='none';
+    btnGateway.style.borderBottom='none';
     if( ! inpUploadReceipt.files[0]) btnUploadReceipt.classList.add('wait');
 
     document.getElementById('spanDetailMethod').textContent = 'مبلغ را به شماره کارت زیر واریز وعکس فیش یا رسید واریزی رابارگزاری کنید.';
@@ -241,6 +248,9 @@ function funcGatewayPayment() {
     divGatewayPayment.style.display='block';
     divCashPayment.style.display='none';
     divCardPayment.style.display='none';
+    btnGateway.style.borderBottom='4px solid #f5f5f5';
+    btnCash.style.borderBottom='none';
+    btnCard.style.borderBottom='none';
 
     document.getElementById('spanDetailMethod').textContent = 'باکارتهای عضوشتاب امن و آنی واریزکنید.';
 }
@@ -287,6 +297,9 @@ function resetPaymentPage() {
     btnUploadReceipt.disabled = false;
     btnUploadReceipt.classList.remove('wait');
 
+
+    
+
     // پنجره تبریک
     document.getElementById('btnToMethod').style.display = '';
 }
@@ -294,7 +307,7 @@ function resetPaymentPage() {
 
 
 
-
+document.getElementById('spnTrcode').textContent = data.trCode;
 
 
 

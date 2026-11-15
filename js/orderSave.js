@@ -1,6 +1,6 @@
 
 
-import { currentLang } from "/public/js/main.js"
+import { currentLang } from "/public/js/main.js";
 import { translation } from "/public/js/lang.js";
 
 /*
@@ -393,6 +393,8 @@ let digit=(n)=>String(n).padStart(2,0);
     year.value =tempY;    
     month.value = digit(m);
     day.value =digit(Number(convertDigits(d,'en'))+1);         // F O R  TOMMORROW
+    
+
     let tommorrowWeekDay=new Date();
     tommorrowWeekDay.setDate(tommorrowWeekDay.getDate() + 1);
     document.getElementById('occationDay').innerHTML=new Intl.DateTimeFormat(currentLang==='fa'?'fa-IR':'en-US',{weekday:'long'}).format(tommorrowWeekDay);
@@ -503,18 +505,20 @@ function regexMobile(val){ return /^09\d{9}$/.test(val); }
 
     if (!regexMobile(inpMobileSender.value)) {
         currentLang === 'fa' ? showError('شماره مبایل فرستنده اشتباه است') : showError('incurrect number Mobile Sender');
-    inpMobileSender.style.color='red';return;
+   // inpMobileSender.style.color='red';return;
+   inpMobileSender.classList.add('classError');return;
 }else inpMobileSender.style.color='black';
 
 if(inpMobileReciver.value.length>0)
     if (!regexMobile(inpMobileReciver.value)) {
         currentLang === 'fa' ? showError('مبایل گیرنده اشتباه است') : showError('  incurrect Mobile Reciver ');
-        inpMobileReciver.style.color='red';return;
+        inpMobileReciver.classList.add('classError');return;
     }else inpMobileReciver.style.color='black';
 
     if (inpAddress.value.length < 5) {
         currentLang === 'fa' ? showError('ورودی آدرس خالی است') : showError('please input Address');
-        inpAddress.value ='\t⚠'; inpAddress.style.color='red';return;
+        inpAddress.placeholder = '\t⚠';
+         inpAddress.classList.add('classError');return;
 }else inpAddress.style.color='black';
     
 let data={
@@ -538,7 +542,17 @@ let data={
 
 
 const res=await saveOrder(data);/*************************************************ذخیره سازی */
+if(res.ok===false && res.msg){
+    const div=document.createElement('div');
+    document.getElementById('delivery').appendChild(div);
+   div.classList.add('dateError');
+    div.innerHTML = `تاریخ تحویل حداقل یکروز فرصت لازم دارد.درصورت نیازدرتسریع تحویل ؛لطفاازگزینه سفارش سریع در<a href="/public/html/album.html">صفحه قبل </a>استفاده بفرمایید`;
+    div.style.display = 'block';
+    setTimeout(()=>{ div.style.display='none';return div.remove();},12000);
+   
 
+    
+}
 if(res.success==='ok'){
 
     const dataPayment={

@@ -174,7 +174,7 @@ button{background-color: #016901;color:white;border:5px solid transparent;border
     width: 100%;
 }
 .congButtons button{width: 100%; margin-top: 0;}
-
+#spnTrcode{border: 1px dashed green;font-weight: bold;padding: 5px;border-radius: 5px;}
 /************************************************************************************************/
 
 
@@ -263,10 +263,18 @@ button{background-color: #016901;color:white;border:5px solid transparent;border
                                                 <!--card-->
 
 
-    <div id="divCardPayment" style="display: none;">
+    <div id="divCardPayment" style="display: none; position: relative;">
         <p style="font-size: 12px;">لطفا مبلغ را به شماره کارت زیر واریز بفرمایید</p>
-        <div id="cardNumber">
+
+    <!--    <div id="cardNumber">
+            <img src="/public/image/kesha_bnk.webp" style="width: 30px;height: 30px;left:30px;top:60px;position: absolute;">
             <span style="font-size: 12px;">شماره کارت </span><span id="spanCardNumber" style="color: rgb(1, 105, 1);direction: ltr;">6037-7016-2936-0097</span><div style="font-size: 12px;">حسن چوبکی</div> <span class="copy" id="spanCardNumberCopy" onclick="copyText('spanCardNumber')">کپی</span>
+        </div>
+    -->
+
+         <div id="cardNumber">
+            <img src="/public/image/tj.gif" style="width: 30px;height: 30px;left:30px;top:60px;position: absolute;">
+            <span style="font-size: 12px;">شماره کارت </span><span id="spanCardNumber" style="color: rgb(1, 105, 1);direction: ltr;">5859-8318-5602-8435</span><div style="font-size: 12px;">حسن چوبکی</div> <span class="copy" id="spanCardNumberCopy" onclick="copyText('spanCardNumber')">کپی</span>
         </div>
 
                     <div id="receipt">
@@ -342,6 +350,9 @@ button{background-color: #016901;color:white;border:5px solid transparent;border
             <span class="thanks">تبریک و سپاس از خرید شما</span>
         </div>
     </div>
+    
+<span>کدپیگیری</span>
+<span class="latinTrcode" id="spnTrcode"></span>
 
     <div class="congButtons">
         <button id="btnToMarket" type="button">بازگشت به مارکت</button>

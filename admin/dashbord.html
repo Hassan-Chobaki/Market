@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+
 <head>
     <link rel="stylesheet" href="/admin/styleAdmin.css">
     <meta charset="UTF-8">
@@ -7,704 +8,1418 @@
     <title>Document</title>
 
     <style>
-input,button,select{
-            font-family: var(--font-family);            
-            font-size: 14px;
+        /* ======================= پایه: مشترک همه‌ی اندازه‌ها ======================= */
+
+        body {
+            font-family: var(--font-family);
+        }
+
+        .latinTrcode {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+            font-style: normal;
+            font-weight: bold;
+            direction: rtl;
+            letter-spacing: 5px;
+            unicode-bidi: isolate;
+        }
+
+        /* --- ورودی‌ها --- */
+        input,
+        select {
+            font-family: var(--font-family);
+            font-size: 12px;
             border-radius: 8px;
             border: 2px solid lightgray;
-            padding: 10px;          
-            
-        }
-
-        
-
-.cardSetup{width: 90dvw;display: flex;flex-direction: row;justify-content: space-between;padding: 20px;}  
-form{
-    box-sizing: border-box;
-    max-height: 500px;
-    max-width: 500px;
-    padding: 5px;
-    border: 1px solid var(--colorBorderDark);   
-    box-shadow: var(--shadowL);
-    border: none;
-    border-radius: 20px;
-}      
-.occasion{
-    box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: center;
-            gap: 10px;        
-            max-height: 400px;
-            overflow-y: auto;
-}
-
-.tblOccasion{
-
-    border-collapse: separate;
-    border-spacing:0;
-    box-sizing: border-box;
-    box-shadow: var(--shadow);
-    border: none;
-
-        
-}
-
-#tblOccasion tbody tr td {
-    padding: 20px 20px;
-    font-size: var(--size2);
-    
-}
-
-#tblOccasion tbody tr{
-    
-   
-    border-bottom: 1px solid var(--colorBorderlight);
-}
-
-.tblOccasion tbody tr:nth-child(even){
-    background-color: #33333308;
-
-}
-
-table td:nth-child(4){width: 100px;text-align: center;}
-
-.tblOccasion thead th{
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: #d0cfcfdb;
-}
-
-
-
-
-
-
-        /***************************************************************************************************/
-        /****************************************** M O B I L E ********************************************/
-        /***************************************************************************************************/
-
-
-@media (max-width:768px) {
-
-
-
-    
-.divBt{width: 100%;display: flex;gap: 5px;margin-top: 50px;}
-
-
-.save{flex: 2;}
-.back{flex: 1;}
-
-
-
-   
-        input{padding: 10px;}
-
-   
-
-.menu,.cardProduct,.cardNewProduct,.overlay{display:none;flex-direction: row;}
-
-    
-.menu{
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    display: block ;
-    position:static;
-    gap: 1px ;
-    margin: 0;
-    padding: 2px;
-    background-color: rgba(0, 0, 0, 0.088);
-    text-align: center;
-    text-shadow:var(--shadowD);
-    font-weight: bold;
-    border: 1px solid gray;
-    box-sizing: border-box;
-    box-shadow: var(--shadowD);
-
-    
-}
-
-.menu>div:active{background-color: white;box-shadow: var(--shadowWhite);}
-
- /*********************************************** O R D E R *********************************************/
-.products,.orders,.setup,.analiz{padding: 5px ;border:1px solid rgba(0, 0, 0, 0.132) ; margin: 5px;}
-
-
-    .cardOrder{display:flex;flex-direction: column;justify-content: center;align-items: center;}
-    .search{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-    input{margin: 20px;font-family: var(--font-family);place-content: 26px;height:50px;}
-
-
-
-   
-    .tblOrders thead{display: none;}
-    .tblOrders table,.tblOrders tbody,.tblOrders tr{display: block;width: 90dvw;}
-    .tblOrders tr{
-                
-                    width: 90dvw;
-                    box-sizing: border-box;
-                    margin: 10px 0;
-                    padding: 10px;
-                    border-radius: 10px;
-                    box-shadow: var(--shadowL);
-                    background-color: white;
-                    cursor: pointer;
-                    border-bottom: 1px solid gray;  
-                    
-                }
-
-    .tblOrders td{
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 8px;
-        border: none;       
-        text-align: left;     
-        font-size: var(--size2);
-
-    }
-
-    .tblOrders td::before{
-        content: attr(data-title);
-        gap: 5px;
-        font-size: var(--size1);
-        font-weight: bold;
-        color: var(--colorTextLight);
-
-        
-    }
-
-
-/***************************************### end order ####********************************/
-
-/***************************************  S E T U P *********************************************/
-
-.cardSetup{
-width: 100%;
-padding: 20px;
-
-}
-.occasion{
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: center;
-            box-sizing: border-box;
-            max-width: 93dvw;
-            min-width: 93dvw;
-}
-
-#tblOccasion tbody tr td {
-    padding: 5px 5px;
-    font-size: var(--size2);    
-}
-#tblOccasion tbody tr{border-bottom: #333;}
-
-
-
-            
-        }
-
-
-
-
-
-        /***************************************************************************************************/
-        /**************************************** E N D M O B I L E ***************************************************/
-        /***************************************************************************************************/
-
-
-@media (min-width:950px) {
-    
-       
-        .container{
-            width: calc(100% - 151px);
-            height: auto;
-            border-right: 3px solid rgb(195, 228, 195);
-            border-top: 3px solid black;
-            margin-right:150px;
-           
-        }
-
-        .menu{
-            background-color: rgb(92, 91, 91);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-right: 12px;
-            right: 0;
-            position: absolute;
-            
-            gap:20px;
-            font-size: medium;      
-            font-family: var(--font-family);
-            font-weight:bold;
-            text-align: center;
-            color: rgb(0, 0, 0);
-            
-            
-        }
-        .menu>div{width: 100%;height: auto;padding: 40px 25px  ;background-color: rgba(183, 183, 184, 0.501);border-radius: 15px;}
-        .menu >div:hover{            
-            border-radius: 11px;
-            background-color: rgb(201, 201, 201);
-            cursor: pointer;color:white;
-        }
-
-        .cart{width: 500px;height: 500px;background-color: rgb(0, 255, 38);
-                margin: 100px;
-                }
-         .cardProduct{
-            display: flex;    
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            
-            box-sizing: border-box;
-            width:100%;
-            height: 100%;           
-           
-               
-                  
-         }       
-         .cardOrder{display:none;}
-         .btnNewProduct{
-            position: fixed;
-            right: calc(151px + 10px);
-            top: 105px;
-            padding: 10px 5px;
-            font-family: var(--font-family);
-            margin: 2px;
-            border-radius: 15px;
-            border: 1 solid white;
-            background-color: var(--colorBottun);
-            color: white;
-         }
-         .cardNewProduct{            
-            display: none;
-            flex-direction:column;
-            align-items: center;
-            justify-content: center;                       
-            padding:20px;            
-            font-size: larger;
-            box-shadow:var(--shadowL);
-            border: 1px solid lightgray;
-            border-radius: 30px;    
-            max-height: 100%;       
-            max-width: 100%;
-            height: 90%;
-            width: 600px;
-            
-            
             padding: 10px;
-
-
             box-sizing: border-box;
-           
-
-        }
-        
-        .cardNewProduct>div>div>div>div>input,button,select{
-            font-family: var(--font-family);            
-            font-size: 14px;
-            border-radius: 8px;
-            border: 2px solid lightgray;
-            padding: 10px;          
-            
         }
 
-        button{cursor: pointer;}
+        select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-left: 34px;
+    background-color: #fff;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #999 50%),
+        linear-gradient(135deg, #999 50%, transparent 50%);
+    background-position: 15px 50%, 20px 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
 
-        .btnAddProduct{
-            background-color: hsl(220, 73%, 88%);
-            color: black;
-            padding: 10px 20px;
-            
+
+
+        /* --- همه‌ی دکمه‌ها یک شکل (به‌جز دکمه‌های ویژه) --- */
+        button:where(:not(.btnDelPic, .closeDetail, .btnAddPic, .icon-wrap, .delete-wrap)) {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            line-height: 1.3;
+            white-space: nowrap;
+            font-family: var(--font-family);
+            font-size: 13px;
+            height: 42px;
+            padding: 0 18px;
+            border-radius: 10px;
+            border: 1px solid #4796f6;
+            background: #fff;
+            color: #4796f6;
+            cursor: pointer;
+            transition: scale .1s, box-shadow .15s, opacity .15s;
         }
 
-       .btn2:hover, .btnAddProduct:hover{box-shadow: var(--shadow3);}
-        .btn2:active,.btnAddProduct:active{scale: .9;}
+        button:where(:not(.btnDelPic, .closeDetail, .btnAddPic, .icon-wrap, .delete-wrap)):hover {
+            box-shadow: var(--shadowL);
+        }
 
-        .divAddBtnBack{
+        button:where(:not(.btnDelPic, .closeDetail, .btnAddPic, .icon-wrap, .delete-wrap)):active {
+            scale: .96;
+        }
+
+        /* دکمه‌های اصلی (پر) */
+        .btnAddProduct,
+        .btnNewProduct,
+        .btnSaveDetail,
+        .save {
+            background: #4796f6 !important;
+            color: #fff !important;
+        }
+
+        .btnNewProduct {
+            height: auto;
+            min-height: 42px;
+            padding: 10px 18px;
+        }
+
+        button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        .btnAddPic {
+            cursor: pointer;
+            border: 2px dashed #333;
+            border-radius: 12px;
+            background: none;
+            background-size: cover;
+        }
+
+        .imgGray {
+            display: inline-block;
+            transform: scale(2);
+            filter: grayscale(100%);
+        }
+
+        .imgGray:hover {
+            filter: brightness(.5);
+        }
+
+        .imgGray:active {
+            filter: brightness(.8);
+            scale: .9;
+        }
+
+        .btnDelPic {
+            border-radius: 50%;
+            overflow: hidden;
+            color: red;
+            height: 20px;
+            width: 20px;
+            padding: 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btnDelPic:active {
+            scale: .9;
+        }
+
+        /* --- فرم محصول جدید --- */
+        .cardNewProduct {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 10px;
+            box-shadow: var(--shadowL);
+            border: none;
+            border-radius: 20px;
+        }
+
+        .divAddBtnBack {
             display: flex;
             flex-direction: row !important;
             justify-content: space-between;
             margin: 20px;
         }
 
-        
-        .btnAddPic{
-            padding:50px;
-            margin: 100px;
-            border: 2px dashed black;
-            background-size: cover;
-        }
-
-        .imgGray{
-                display: inline-block;
-                transform: scale(2);
-                filter: grayscale(100%);
-            }
-        .imgGray:hover{filter: brightness(.5);}
-        .imgGray:active{filter: brightness(.8);scale: .9;}
-
-        #divAddPic{
-            display:flex;
+        #divAddPic {
+            display: flex;
             flex-direction: column;
-            width:110px;
-            height: 150px;
             flex-wrap: wrap;
+            width: 110px;
+            height: 150px;
             gap: 5px;
             box-sizing: border-box;
             overflow-x: hidden;
-            
-            border: 1px solid rgba(141, 139, 139, 0.268);
+            border: 1px solid rgba(141, 139, 139, .268);
             border-radius: 15px;
+        }
+
+        .preview {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border: 1px solid rgba(208, 208, 208, .268);
+            border-radius: 15px;
+            background-color: lightgray;
+            box-shadow: var(--shadowD);
+        }
+
+        .previewInTlb {
+            display: block;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .divPicAndName {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+        }
+
+        /* --- وضعیت محصول --- */
+        .statusProduct.active {
+            color: green;
+        }
+
+        .statusProduct.inactive {
+            color: gray;
+        }
+
+        .statusProduct.outOfStock {
+            color: red;
+        }
+
+        .icon-wrap:hover {
+            opacity: .75;
+        }
+
+        .trash-lid {
+            transform-origin: 4px 6px;
+            transition: transform .2s ease;
+        }
+
+        .delete-wrap:hover .trash-lid {
+            transform: translateY(-2px) rotate(-8deg);
+        }
+
+        /* --- خطای ورودی --- */
+        .Error::placeholder {
+            color: red;
+        }
+
+        .Error {
+            border: 1px dashed red;
+        }
+
+        .correct {
+            color: black;
+            border: 1px solid gray;
+        }
+
+        /* --- پنجره‌ی تأیید (بلی / خیر) --- */
+        .overlay {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            inset: 0;
+            background-color: #ffffff8e;
+            backdrop-filter: blur(2px);
+            z-index: 999999;
+        }
+
+        .cardConfirm {
+            user-select: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            background-color: #fff;
+            box-shadow: var(--shadow3);
+            box-sizing: border-box;
+            width: 320px;
+            max-width: 90%;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        span.noticeText {
+            display: block;
+            width: 100%;
+        }
+
+        .yesNo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        #yes,
+        #no {
+            flex: 1;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            user-select: none;
+            cursor: pointer;
+            border: 1px solid #4796f6;
+            border-radius: 10px;
+            font-size: 13px;
+            transition: scale .1s, box-shadow .15s;
+        }
+
+        #yes {
+            background: #4796f6;
+            color: #fff;
+        }
+
+        #no {
+            background: #fff;
+            color: #4796f6;
+        }
+
+        #yes:hover,
+        #no:hover {
+            box-shadow: var(--shadowL);
+        }
+
+        #yes:active,
+        #no:active {
+            scale: .95;
+        }
+
+        /* --- پیام کوتاه --- */
+        .dialogBox {
+            display: flex;
+            flex-direction: row;
+            position: fixed;
+            z-index: 1000009;
+            width: 40%;
+            min-height: 30px;
+            right: auto;
+            left: 30%;
+            top: 20px;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #57535326;
+        }
+
+        /* --- نمایش بزرگ تصویر --- */
+        .box {
+            display: none;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            inset: 0;
+            background-color: #333333f0;
+            z-index: 999999;
+        }
+
+        .imgPic {
+            object-fit: contain;
+            border-radius: 5px;
+            border: 10px dashed #fdfcfcac;
+            box-shadow: var(--shadowWhite);
+            max-width: 80vw;
+            max-height: 80dvh;
+        }
+
+        .NPpic {
+            cursor: pointer;
+            border-radius: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin: 20px;
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        /* --- جدول سفارش‌ها --- */
+        .classCancel {
+            background-color: #ff000019;
+            color: #741212;
+        }
+
+        .classDelivered {
+            background-color: #43fc431d;
+            color: #095b09;
+        }
+
+        .spnDetail {
+            color: #4796f6;
+            padding: 0 5px;
+            border: 1px solid #4796f6;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 10px;
+        }
+
+        .classFontBold {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* --- جستجوی سفارش‌ها --- */
+        .search {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 0 16px;
+            box-sizing: border-box;
+        }
+
+        .search>div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+        /* --- آماده‌سازی (مناسبت‌ها) --- */
+        .cardSetup {
+            width: 90dvw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        form {
+            box-sizing: border-box;
+            max-height: 500px;
+            max-width: 500px;
+            padding: 5px;
+            box-shadow: var(--shadowL);
+            border: none;
+            border-radius: 20px;
+        }
+
+        .occasion {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .tblOccasion {
+            border-collapse: separate;
+            border-spacing: 0;
+            box-sizing: border-box;
+            box-shadow: var(--shadow);
+            border: none;
+        }
+
+        #tblOccasion tbody tr td {
+            padding: 20px;
+            font-size: var(--size2);
+        }
+
+        #tblOccasion tbody tr {
+            border-bottom: 1px solid var(--colorBorderlight);
+        }
+
+        .tblOccasion tbody tr:nth-child(even) {
+            background-color: #33333308;
+        }
+
+        .tblOccasion td:nth-child(4) {
+            width: 100px;
+            text-align: center;
+        }
+
+        .tblOccasion thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #d0cfcfdb;
+        }
+
+        /* --- پنجره‌ی جزئیات سفارش --- */
+        .overlayDetail {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0000008c;
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 999999;
+        }
+
+        .overlayDetail.show {
+            display: flex;
+        }
+
+        .cardDetail {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            max-height: 92dvh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+            padding: 20px 16px calc(16px + env(safe-area-inset-bottom));
+            animation: detailUp .25s ease;
+        }
+
+        @keyframes detailUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        .closeDetail {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            border-radius: 50%;
+            background: #f1f1f1;
+            color: #333;
+            font-size: 13px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .detailTitle {
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 0 0 14px;
+        }
+
+        .detailTitle .latinTrcode {
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+
+        .rowDetail {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 2px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 12px;
+        }
+
+        .rowDetail b {
+            flex-shrink: 0;
+            font-weight: normal;
+            color: #8a8a8a;
+            font-size: 12px;
+        }
+
+        .rowDetail span {
+            text-align: left;
+            word-break: break-word;
+            color: #222;
+        }
+
+        .editBox {
+            margin-top: 16px;
+            padding: 14px;
+            background: #f7f7f8;
+            border-radius: 14px;
+        }
+
+        .editTitle {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .editRow {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .editRow select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    padding: 0 12px 0 34px;
+    font-family: var(--font-family);
+    font-size: 12px;
+    color: #111;
+    background-color: #fff;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #999 50%),
+        linear-gradient(135deg, #999 50%, transparent 50%);
+    background-position: 15px 50%, 20px 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    margin: 0;
+    cursor: pointer;
+    transition: border-color .15s, background-color .15s;
+}
+
+        .editRow select:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        .editRow select.changed {
+            border-color: #2c8afe;
+            background-color: #eef5ff;
+        }
+
+        .warnDetail {
+            display: none;
+            margin-bottom: 12px;
+            padding: 9px 10px;
+            font-size: 12px;
+            color: #8a5a00;
+            background: #fff4d6;
+            border-radius: 10px;
+        }
+
+        .warnDetail.show {
+            display: block;
+        }
+
+        .editBtns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btnSaveDetail {
+            flex: 2;
+        }
+
+        .btnCancelDetail {
+            flex: 1;
+        }
+
+        @media (min-width:600px) {
+            .overlayDetail {
+                align-items: center;
+            }
+
+            .cardDetail {
+                width: min(92vw, 480px);
+                border-radius: 20px;
+                padding: 24px 22px 20px;
+            }
+        }
+
+
+        .cardAnaliz {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            
+            box-sizing: border-box;
             
         }
-            .preview{ 
-                width: 100px;
-                height: 100px;
-                object-fit: contain;
-                border: 1px solid rgba(208, 208, 208, 0.268);
-                border-radius: 15px;
-                background-color:lightgray;
-                box-shadow: var(--shadowD);
+        .receipt{display: flex;flex-direction: row;width: fit-content; background-color: #c0c0c02a;gap: 20px;
+                 border: 1px solid silver;border-radius: 10px;padding: 20px;}
 
+        .col{display:inline-flex;flex-direction: column;align-items: start !important;vertical-align: text-bottom !important;padding-top: 5px !important;flex-shrink: 0 !important;}
+        .col label{font-size: 11px;}
+         input[type="radio"]{transform:translateY(5px);}
+
+
+        .datesReceipt{
+            display: flex;flex-direction: row;gap: 10px;text-align:justify;justify-content: center;align-items: center;
+            font-size: 12px;padding: 20px;
+        }
+
+
+        .btnShowReceipt{background-color: #4796f6;color: white;}
+
+
+.receiptView {
+  display: none;               /* تا وقتی لازم نیست دیده نشود */
+  position: fixed;
+  inset: 0;                    /* تمام صفحه */
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;         /* وسط عمودی */
+  justify-content: center;     /* وسط افقی */
+  cursor: pointer;
+}
+
+.receiptView.show {
+  display: flex;
+}
+
+.receiptPic {
+  max-width: 90vw;
+  max-height: 90vh;
+  max-height: 90dvh;           /* برای موبایل */
+  object-fit: contain;
+  border-radius: 8px;
+}
+.CR {
+    max-width: 100%;
+    overflow: hidden;
+}
+.receipt-row span:nth-child(2) { flex: 1 1 0; }       /* نام: کوتاه شود */
+.receipt-row span:nth-child(3),
+.receipt-row span:nth-child(4) { flex: 0 1 auto; }    /* موبایل و کدپیگیری */
+
+#divInbox { display: none; flex-direction: column; justify-content: center;
+     box-sizing: border-box; position: fixed; top: 100px; left: 20px; width: 300px; max-height: 300px;
+      overflow: hidden; padding: 10px; background: #fff; border: 2px solid #4796f6; border-radius: 14px; 
+      box-shadow: 0 6px 20px #4796f655; z-index: 1000; } #divInboxDetail { display: flex; flex-direction: column; 
+        gap: 6px; flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-right: 4px; } 
+#divInboxDetail label { display: block; padding: 8px 10px; font-size: 10px; line-height: 1.6; background: #f7f7f8;
+     border-radius: 8px; border-right: 4px solid #4796f6; cursor: pointer; text-overflow: ellipsis; width: 100%; 
+     box-sizing: border-box; white-space: nowrap; } 
+#divInboxDetail label:hover { background: #09365b22; } 
+#btnInboxOk { margin-top: 10px; height: 36px; padding: 10px 22px; background: #4796f6; color: #fff; }
+
+.inboxTrcode{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    direction: rtl;
+    letter-spacing: 5px;
+    unicode-bidi: isolate;
+}
+
+.cardReport{display: flex;flex-direction: row;box-sizing: border-box;
+    justify-content: center;align-items: center;gap: 10px;width: 95%;flex-wrap: wrap;margin: 10px;}
+.cardReport button{background-color: #4796f6;color: white;font-weight: bold;}
+
+.classActiveBtn{border: 2px solid green;}
+.col{display: flex;flex-direction: column;justify-content: flex-start;align-items: flex-start;font-size: 12px;}
+#spnReportTitleDetail{margin-top: 20px;}
+
+        /* ====================================================================== */
+        /* ============================== موبایل ================================= */
+        /* ====================================================================== */
+        @media (max-width:768px) {
+            #divButton{display: flex;flex-direction: column;}
+
+            input,
+            select {
+                font-size: 14px;
             }
-            .previewInTlb{
-                display: block;;
-                width: 50px;
-                height: 50px;
-                object-fit: contain;
-                border: 1px solid black;
-                border-radius: 5px;
-                
+
+            .menu,
+            .cardProduct,
+            .cardNewProduct,
+            .overlay {
+                display: none;
+                flex-direction: row;
             }
-            .divPicAndName{
+
+            .menu {
+                display: block;
+                position: static;
+                margin: 0;
+                padding: 2px;
+                background-color: rgba(0, 0, 0, .088);
+                text-align: center;
+                text-shadow: var(--shadowD);
+                font-weight: bold;
+                border: 1px solid gray;
+                box-sizing: border-box;
+                box-shadow: var(--shadowD);
+            }
+
+            .menu>div:active {
+                background-color: #fff;
+                box-shadow: var(--shadowWhite);
+            }
+
+            .products,
+            .orders,
+            .setup,
+            .analiz {
+                padding: 5px;
+                border: 1px solid rgba(0, 0, 0, .132);
+                margin: 5px;
+            }
+
+            /* ---------- پیام کوتاه ---------- */
+            .dialogBox {
+                position: fixed;
+                top: 10px;
+                left: 5%;
+                right: 5%;
+                width: 90%;
+            }
+
+            /* ---------- پنجره‌ی تأیید ---------- */
+            .overlay {
+                flex-direction: column;
+            }
+
+            .cardConfirm {
+                display: flex;
+                width: 90%;
+                max-width: 340px;
+            }
+
+            /* ---------- محصولات ---------- */
+            .cardProduct {
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 10px;
+                box-sizing: border-box;
+                width: 100%;
+                padding: 8px;
+            }
+
+            .btnNewProduct {
+                width: 100%;
+            }
+
+            /* فرم محصول جدید */
+            .cardNewProduct {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                max-width: 100%;
+                max-height: none;
+                padding: 14px 12px;
+                font-size: 14px;
+            }
+
+            .cardNewProduct>div:nth-of-type(2) {
+                flex-direction: column !important;
+                width: 100%;
+            }
+
+            .cardNewProduct>div:nth-of-type(2)>div,
+            .cardNewProduct>div:nth-of-type(2)>div>div {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .cardNewProduct input,
+            .cardNewProduct select {
+                width: 100%;
+                margin: 0;
+                height: 46px;
+            }
+
+            .divAddBtnBack {
+                margin: 16px 0;
+                gap: 8px;
+            }
+
+            .divAddBtnBack>div {
+                flex: 1;
+                float: none !important;
+            }
+
+            .divAddBtnBack button {
+                width: 100%;
+            }
+
+            .btnAddPic {
+                display: block;
+                width: 100%;
+                margin: 12px 0;
+                padding: 22px;
+            }
+
+            #divAddPic {
+                flex-direction: row;
+                width: 100%;
+                height: auto;
+                min-height: 110px;
+                overflow: visible;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+
+            /* جدول محصولات به‌شکل کارت */
+            #tbl,
+            #tbl tbody,
+            #tbl tr {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            #tbl thead {
+                display: none;
+            }
+
+            #tbl tr {
+                margin: 10px 0;
+                padding: 8px 12px;
+                border-radius: 14px;
+                background: #fff;
+                box-shadow: var(--shadowL);
+            }
+
+            #tbl td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                padding: 9px 2px;
+                border: none;
+                border-bottom: 1px solid #f0f0f0;
+                font-size: 13px;
+                text-align: left;
+            }
+
+            #tbl td:last-child {
+                border-bottom: none;
+                justify-content: center;
+                gap: 24px;
+                padding-top: 12px;
+            }
+
+            #tbl td::before {
+                color: var(--colorTextLight, #888);
+                font-size: 12px;
+                font-weight: bold;
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+
+            #tbl td:nth-child(1)::before {
+                content: 'کد';
+            }
+
+            #tbl td:nth-child(2)::before {
+                content: 'نام';
+            }
+
+            #tbl td:nth-child(3)::before {
+                content: 'تعداد';
+            }
+
+            #tbl td:nth-child(4)::before {
+                content: 'قیمت';
+            }
+
+            #tbl td:nth-child(5)::before {
+                content: 'وضعیت';
+            }
+
+            #tbl td:nth-child(6)::before {
+                content: 'تصویر';
+            }
+
+            #tbl td:last-child::before {
+                content: none;
+            }
+
+            /* ---------- سفارشات ---------- */
+            .cardOrder {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                font-size: 10px;
-            }
-            .btnDelPic{
-                border-radius: 50%;
-                overflow: hidden;              
-                color: red;
-                height:20px;
-                width:20px;
-                padding: 0;
-                font-weight: bold;
             }
 
-            .btnDelPic:hover{font-weight: bolder;scale: .95;}
-            .btnDelPic:active{scale: .9;}
-
-            .btn2{
-                background: none;
+            .inpSearchOrder {
+                font-size: 16px;
             }
 
+            .tblOrders thead {
+                display: none;
+            }
 
-            .dialogBox{
+            .tblOrders table,
+            .tblOrders tbody,
+            .tblOrders tr {
+                display: block;
+                width: 90dvw;
+            }
+
+            .tblOrders tr {
+                box-sizing: border-box;
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: var(--shadowL);
+                background-color: #fff;
+                cursor: pointer;
+                border-bottom: 1px solid gray;
+            }
+
+            .tblOrders td {
                 display: flex;
-                flex-direction: row;
-                position: absolute;
-                z-index: 10000;
-                width: 40%;
-                height: 30px;
-                right: 30%;
-                left: 10%;
-                top: 120px;
+                justify-content: space-between;
+                padding: 8px;
+                border: none;
+                text-align: left;
+                font-size: var(--size2);
+            }
+
+            .tblOrders td::before {
+                content: attr(data-title);
+                gap: 5px;
+                font-size: var(--size1);
+                font-weight: bold;
+                color: var(--colorTextLight);
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+
+            .classCancel {
+                background-color: #ff00000a;
+            }
+
+            .classDelivered {
+                background-color: #095b0914;
+            }
+
+            .spnDetail {
+                color: #117afb;
+                padding: 10px 5px;
+                border: 1px solid #117afb;
+                font-size: 10px;
+                width: 80%;
+                text-align: center;
+            }
+
+            /* ---------- آماده‌سازی ---------- */
+            .cardSetup {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .cardSetup>div {
+                width: 100%;
+            }
+
+            .cardSetup form {
+                width: 100%;
+                max-width: 100%;
+                max-height: none;
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            .occasion {
+                width: 100%;
+                min-width: 0;
+                max-width: 100%;
+                max-height: 50vh;
+                padding: 0;
+            }
+
+            .occasion input[type="text"] {
+                width: 100%;
+                margin: 0;
+            }
+
+            .occasion>div:nth-of-type(1) {
+                display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: white;
-                border-radius: 5px;
-                border: 1px solid #57535326;
+                gap: 6px;
+                width: 100%;
             }
 
-   
+            .occasion>div:nth-of-type(1) select {
+                flex: 1;
+                min-width: 0;
+                height: 46px;
+                padding: 0 6px;
+            }
 
-/* استایل سلول‌ها */
-.tableBox th,
-.tableBox td {
-    padding: 10px 40px;
-    text-align: center;
-    border-bottom: 1px solid #e0e0e0;
-    width: 15%;
-    
-    vertical-align:middle;
-   
-}
+            .divBt {
+                width: 100%;
+                display: flex;
+                gap: 8px;
+                margin-top: 10px;
+                box-sizing: border-box;
+            }
 
-td{font-size: 12px;}
+            .divBt button {
+                height: 46px;
+                padding: 0 8px;
+            }
 
-/* عنوان‌ها */
- thead th{
-    background-color: #cccaca;
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
-    position: sticky;
-    top: 0;
-    height: 13px;
-    z-index: 50;
-    border-collapse: collapse;
+            .save {
+                flex: 2;
+            }
 
-    
-}
+            .back {
+                flex: 1;
+            }
 
-tr:nth-child(even){background-color: #eeeded38;}
+            .tblOccasion {
+                width: 100%;
+                margin-top: 10px;
+                max-height: 5vh;
+            }
 
+            #tblOccasion tbody tr td {
+                padding: 8px 5px;
+            }
 
-/* افکت ردیف‌ها */
-.tableBox tr:hover {
-    background-color: #e9e7e74a;
-}
+            #tblOccasion tbody tr {
+                border-bottom: 1px solid var(--colorBorderlight);
+            }
+        
+        .datesReceipt{
+            display: flex;flex-direction: column;gap: 10px;text-align: justify;justify-content: center;align-items: center;
+            font-size: 12px;
+        }
+        .btnShowReceipt{width: 90dvw;}
 
+        
+        .col{flex-direction: column;align-items: center;justify-content: center;gap: 10px;}
+        .receipt{display: flex;flex-direction: column;align-items: center;justify-content: center;width:90dvw;gap: 5px;}
 
-
-/* واکنش‌گرا */
-.tableBox {
-    display: block;    
-    height: 70dvh;       /*                     اینجا یعنی 70درصدارتفاع صفحه دستگاه */
-    overflow-y: auto;
-    overflow-x: hidden;
-    table-layout: fixed;
-    width:fit-content;
-    box-sizing: border-box;
-    border-radius: 20px 20px;
-    border-collapse: collapse;
-    background-color: #fff;   
-    font-size: 16px;
-    margin: 50px;
-}
-
-
-
-.statusProduct.active{color: green;}
-.statusProduct.inactive{color: gray;}
-.statusProduct.outOfStock{color: red;}
-
-
-.icon-wrap:hover {
-    opacity: 0.75;
-}
-.trash-lid {
-    transform-origin: 4px 6px;
-    transition: transform 0.2s ease;
-}
-.delete-wrap:hover .trash-lid {
-    transform: translateY(-2px) rotate(-8deg);
-}
-
-.cardConfirm{user-select: none;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    background-color: white;
-    box-shadow: var(--shadow3);
-    width: 300px;
-    max-width: 90%;
-    padding: 24px;
-    border-radius: 12px;
-}
-.overlay{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff8e;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999999;
-    position: fixed;
-}
-
-
-#yes,#no{user-select: none;
-    width: 20%;
-    border: 1px solid #a8a4a4;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: var(--shadowD);
-
-   
-}
-#yes:hover,#no:hover,.btnNewProduct:hover{background-color:var(--colorBottun) ; color: white;box-shadow: var(--shadowL);}
-#yes:active,#no:active,.btnNewProduct:active{scale: .9;box-shadow: var(--shadowL);}
-
-.yesNo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 100px;
-    width: 100%;
-}
-
-span.noticeText{
-    display: block;
-    width: 100%;
-}
-
-
-.Error::placeholder{color: red;}
-.Error{border: 1px dashed red;}
-.correct{color: black;border: 1px solid gray;}
-
-
-
-.box{
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right:0;
-    background-color: #333333f0;
-    z-index: 999999;
-}
-.imgPic{
-        object-fit: contain;
-        border-radius: 5px;
-        border:10px dashed #fdfcfcac;
-        box-shadow: var(--shadowWhite);
-        object-fit: contain;
-        max-width: 80vw;
-        max-height: 80dvh;
+        
+        #divButton{flex-direction: column ;gap: 10px;}
+        
     }
 
-.NPpic{
-    cursor: pointer;
-    border-radius: 20px;
-    background-color: black;
-    color:white;
-    padding: 10px;
-    margin: 20px;
-    max-width: fit-content;
-    max-height: fit-content;
-}
 
+        /* ====================================================================== */
+        /* ============================== دسکتاپ ================================= */
+        /* ====================================================================== */
+        @media (min-width:769px) {
 
-/***************************************************************************************************/
-/***************************************************************************************************/
+            .container {
+                width: calc(100% - 151px);
+                height: auto;
+                border-right: 3px solid rgb(195, 228, 195);
+                border-top: 3px solid black;
+                margin-right: 150px;
+            }
 
+            .menu {
+                background-color: rgb(92, 91, 91);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 12px;
+                right: 0;
+                position: absolute;
+                gap: 20px;
+                font-size: medium;
+                font-weight: bold;
+                text-align: center;
+                color: #000;
+            }
 
-.cardOrder{
-    width: 100dvw;
+            .menu>div {
+                width: 100%;
+                height: auto;
+                padding: 40px 25px;
+                background-color: rgba(183, 183, 184, .501);
+                border-radius: 15px;
+            }
+
+            .menu>div:hover {
+                border-radius: 11px;
+                background-color: rgb(201, 201, 201);
+                cursor: pointer;
+                color: #fff;
+            }
+
+            .cardProduct {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+            }
+
+            .btnNewProduct {
+                position: fixed;
+                right: calc(151px + 10px);
+                top: 105px;
+                margin: 2px;
+            }
+
+            .cardNewProduct {
+                font-size: larger;
+                border: 1px solid lightgray;
+                border-radius: 30px;
+                max-height: 100%;
+                max-width: 100%;
+                height: 90%;
+                width: 600px;
+                padding: 10px;
+            }
+
+            .overlay {
+                display: none;
+            }
+
+            .cardConfirm {
+                display: none;
+            }
+
+            /* جدول محصولات */
+            .tableBox {
+                display: block;
+                height: 70dvh;
+                overflow: auto;
+                width: fit-content;
+                max-width: calc(100% - 100px);
+                box-sizing: border-box;
+                border-radius: 20px;
+                border-collapse: collapse;
+                background-color: #fff;
+                font-size: 16px;
+                margin: 50px;
+            }
+
+            .tableBox th,
+            .tableBox td,
+            .tableOrders th,
+            .tableOrders td {
+                padding: 10px 24px;
+                text-align: center;
+                border-bottom: 1px solid #e0e0e0;
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+
+            td {
+                font-size: 12px;
+            }
+
+            thead th {
+                background-color: #cccaca;
+                font-weight: bold;
+                font-size: 14px;
+                color: #333;
+                position: sticky;
+                top: 0;
+                height: 13px;
+                z-index: 50;
+            }
+
+            tr:nth-child(even) {
+                background-color: #00000009;
+            }
+
+            .tableBox tr:hover {
+                background-color: #e9e7e711;
+            }
+
+            /* سفارشات */
+            .cardOrder {
+                width: 100%;
+                direction: rtl;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tblOrders thead {
+                font-weight: bold;
+                font-size: 12px;
+                white-space: nowrap;
+                min-width: max-content;
+            }
+
+            .tblOrders {
+                border-radius: 10px;
+                max-width: 95%;
+                max-height: 70dvh;
+                overflow: auto;
+            }
+
+            .tblOrders table {
+                width: max-content;
+                table-layout: auto;
+                border-collapse: collapse;
+            }
+
+            .tblOrders th,
+            .tblOrders td {
+                white-space: nowrap;
+                width: auto;
+                padding: 5px 10px;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: 1px solid #e0e0e0;
+                box-sizing: border-box;
+            }
+        
+        
     
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
+        #divInbox {
+        width: 260px;
+        max-width: 260px;
+        left: 20px;
+    }
 
 }
+
+
+
+
+
+
+
+
+
+        /*************************        clander      */
+ 
+
 
 
     </style>
 </head>
-<body style="font-family: var(--font-family);">
+
+<body>
     <header>
         <h1>Dashboard Mangement</h1>
     </header>
 
 
     <div>
-        <div class= "menu">
-            <div id="btnProduct" class="products" ><span >محصولات</span>  </div>
+        <div class="menu">
+            <div id="btnProduct" class="products"><span>محصولات</span> </div>
             <div id="btnOrder" class="orders"> <span>سفارشات</span> </div>
-            <div id="btnSetup" class="setup"> <span>آماده سازی</span> </div>            
+            <div id="btnSetup" class="setup"> <span>آماده سازی</span> </div>
             <div id="btnAnaliz" class="analiz"> <span>آنالیز</span> </div>
-        </div>        
+            <div id="btnReport" class="analiz"> <span>گزارش</span> </div>
+        </div>
 
 
-<div class="container">
+        <div class="container">
 
-            <div class="cardProduct" id="cardProduct">                
-                <button class="btnNewProduct" id="btnNewProduct" type="button">+   محصول جدید</button>
+            <div class="cardProduct" id="cardProduct">
+                <button class="btnNewProduct" id="btnNewProduct" type="button">+ محصول جدید</button>
                 <form id="cardNewProduct" class="cardNewProduct">
-                    
-                   
-      <div><span id="spanTitle"><h5></h5></span>
-      <span style="font-size: 14px;"><p>  ⚠نکته : اولین تصویر انتخابی -تصویر اصلی- از محصول محسوب میشود</p></span></div>
-      <div style="display: flex;flex-direction: row;">
 
 
-                    <div> <!---->
+                    <div><span id="spanTitle">
+                            <h5></h5>
+                        </span>
+                        <span style="font-size: 14px;">
+                            <p> ⚠نکته : اولین تصویر انتخابی -تصویر اصلی- از محصول محسوب میشود</p>
+                        </span>
+                    </div>
+                    <div style="display: flex;flex-direction: row;">
+
+
+                        <div> <!---->
+                            <div>
+                                <div style="gap: 10px;display: flex;flex-direction:column; padding: 5px;">
+                                    <input id="inpCodeProduct" type="text" placeholder="کدمحصول">
+                                    <input id="inpNameProduct" type="text" placeholder="نام محصول">
+                                    <input id="inpPriceProduct" type="text" placeholder="قیمت محصول(تومان)">
+                                    <input id="inpQuantityProduct" type="text" placeholder="تعدادموجودی">
+                                    <div>
+                                        <label style="font-size:small;color:gray">وضعیت محصول</label>
+                                        <select id="inpStatusProduct">
+                                            <option value="active" style="color: green;">فعال</option>
+                                            <option value="inactive" style="color: gray;">غیرفعال</option>
+                                            <option value="out_of_stock" style="color: red;">ناموجود</option>
+                                            <option value="coming_soon">به زودی</option>
+                                            <option value="discontinue">متوقف شده</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="divAddBtnBack">
+                                    <div style="float:right"><button id="btnAddProduct" class="btnAddProduct"
+                                            type="submit">افزودن</button></div>
+                                    <div style="float: left;"><button id="btnBackProduct" class="btnBackProduct"
+                                            type="button">بازگشت</button></div>
+                                </div>
+
+                            </div>
+
+                        </div>
                         <div>
-                                        <div style="gap: 10px;display: flex;flex-direction:column; padding: 5px;">
-                                                    <input id="inpCodeProduct" type="text" placeholder="کدمحصول" >
-                                                    <input id="inpNameProduct" type="text" placeholder="نام محصول">
-                                                    <input id="inpPriceProduct" type="text" placeholder="قیمت محصول">
-                                                    <input id="inpQuantityProduct" type="text" placeholder="تعدادموجودی">
-                                                    <div>
-                                                        <label style="font-size:small;color:gray">وضعیت محصول</label>
-                                                            <select id="inpStatusProduct" >
-                                                                <option value="active" style="color: green;">فعال</option>
-                                                                <option value="inactive" style="color: gray;">غیرفعال</option>
-                                                                <option value="out_of_stock" style="color: red;">ناموجود</option>
-                                                                <option value="coming_soon">به زودی</option>
-                                                                <option value="discontinue">متوقف شده</option>
-                                                            </select>
-                                                    </div>
-                                        </div> 
-
-                                                    <div class="divAddBtnBack">
-                                                        <div style="float:right"><button id="btnAddProduct" class="btnAddProduct" type="submit" >افزودن</button></div>
-                                                        <div style="float: left;"><button id="btnBackProduct" class="btn2" type="button" >بازگشت</button></div>
-                                                    </div>
+                            <div>
+                                <input id="inpAddPic" type="file" name="images"
+                                    accept="image/jpeg,image/bmp,image/png,image/webp" hidden>
+                                <button class="btnAddPic" id="btnAddPic" type="button"><span
+                                        class="imgGray">+</span></button>
+                                <div id="divAddPic"></div>
+                            </div>
 
                         </div>
 
-                    </div> 
-                    <div>   
-                                                    <div>
-                                                        <input id="inpAddPic" type="file" name="images" accept="image/jpeg,image/bmp,image/png,image/webp" hidden>
-                                                        <button class="btnAddPic" id="btnAddPic" type="button"><span class="imgGray">+</span></button>
-                                                        <div id="divAddPic"></div>
-                                                    </div>
 
-                    </div>                                
+                    </div><!---->
 
-
-      </div><!---->
-                    
                 </form>
-            
 
 
-                
-                    <table id="tbl" class="tableBox">
-                     <thead><tr> <th>کد</th> <th>نام</th> <th>تعداد</th> <th>قیمت</th> <th>وضعیت</th> <th>تصویر</th> <th>عملیات</th> </tr>  </thead>
 
-                     <tbody></tbody>
-                        
-                    </table>
-                
+
+                <table id="tbl" class="tableBox">
+                    <thead>
+                        <tr>
+                            <th>کد</th>
+                            <th>نام</th>
+                            <th>تعداد</th>
+                            <th>قیمت</th>
+                            <th>وضعیت</th>
+                            <th>تصویر</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
 
 
 
@@ -716,96 +1431,289 @@ span.noticeText{
 
 
 
-<!-- #region -->
+            <!-- #region -->
             <div id="cardOrder" class="cardOrder">
 
                 <div class="search">
-                    <div><input type="search" class="inpSearchOrder" id="inpSearchOrder" placeholder="جستجو " style="text-align: center;"></div>
+                    <div><input type="search" class="inpSearchOrder" id="inpSearchOrder" placeholder="جستجو "
+                            style="text-align: center;margin-bottom: 10px;">
+                    </div>
                 </div>
 
 
                 <div class="tblOrders" id="tblOrders">
                     <table>
-                        <thead><tr><th>ردیف</th> <th> فرستنده</th> <th>موبایل فرستنده</th> <th>تلفن فرستنده</th> <th>گیرنده</th> 
-                                    <th>موبایل گیرنده</th><th>تلفن گیرنده</th><th>تاریخ تحویل</th><th>ساعت از</th><th>ساعت تا</th><th>نوشته</th><th>آدرس</th> <th>توضیحات</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>کدپیگیری</th>
+                                <th> فرستنده</th>
+                                <th>وضعیت سفارش</th>
+                                <th>روش پرداخت</th>
+                                <th>وضعیت پرداخت</th>
+                                <th>تاریخ تحویل</th>
+                                <th>جزئیات</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
                     </table>
                 </div>
 
 
             </div>
-<!-- #endregion -->
 
 
 
 
-<!--SETUP-->
-<div class="cardSetup" id="cardSetup">
-    
 
 
-    <div>
-        <form>
-        <div class="occasion" id="occasion">
-            <input type="text" id="inpNameOccasion" placeholder="نام مناسبت">
-            <div> <select id="dayOccasion"></select>/<select id="monthOccasion"></select>/<select id="yearOccasion"></select> </div>
-            <div class="divBt">    
-                      <button class="bt save" type="submit" id="btnOccasionSave">ذخیره</button>
-                      <button class="bt back" type="button" id="btnBackOfOccasion">بازگشت</button>
+            <div class="overlayDetail" id="overlayDetail">
+                <div class="cardDetail">
+                    <button type="button" id="btnCloseDetail" class="closeDetail">✕</button>
+                    <div class="editBox">
+                        <div class="editTitle">مدیریت سفارش</div>
+
+                        <label class="editRow">
+                            <span>وضعیت سفارش</span>
+                            <select id="selStatus">
+                                <option value="pending">ثبت شد</option>
+                                <option value="processing">درحال پردازش</option>
+                                <option value="ready">آماده ارسال</option>
+                                <option value="delivery">تحویل شد</option>
+                                <option value="canceled">لغو</option>
+                            </select>
+                        </label>
+
+                        <label class="editRow">
+                            <span>وضعیت پرداخت</span>
+                            <select id="selStatusPay">
+                                <option value="notPaid">باز</option>
+                                <option value="paid">تسویه</option>
+                            </select>
+                        </label>
+
+                        <label class="editRow">
+                            <span>روش پرداخت</span>
+                            <select id="selPayMethod">
+                                <option value="cash">حضوری</option>
+                                <option value="card">کارت به کارت</option>
+                                <option value="gateway">درگاه</option>
+                            </select>
+                        </label>
+
+                        <div id="warnDetail" class="warnDetail"></div>
+
+                        <div class="editBtns">
+                            <button type="button" id="btnSaveDetail" class="btnSaveDetail">ذخیره تغییرات</button>
+                            <button type="button" id="btnCancelDetail" class="btnCancelDetail">انصراف</button>
+                        </div>
+                    </div>
+                    <div id="detailBody"></div>
+
+                </div>
             </div>
-            <table id="tblOccasion" class="tblOccasion">
-                <thead>
-                    <tr>
-                        <th>ردیف</th>
-                        <th>مناسبت</th>
-                        <th>تاریخ</th>
-                        <th>عملیات</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+
+
+
+
+
+
+
+
+            <!-- #endregion -->
+
+
+
+
+            <!--SETUP-->
+            <div class="cardSetup" id="cardSetup">
+
+
+
+                <div>
+                    <form>
+                        <div class="occasion" id="occasion">
+                            <input type="text" id="inpNameOccasion" placeholder="نام مناسبت">
+
+                            <div> <select id="dayOccasion"></select>/<select id="monthOccasion"></select>/<select id="yearOccasion"></select> </div>
+
+                            <div class="divBt">
+                                <button class="bt save" type="submit" id="btnOccasionSave">ذخیره</button>
+                                <button class="bt back" type="button" id="btnBackOfOccasion">بازگشت</button>
+                            </div>
+                            <table id="tblOccasion" class="tblOccasion">
+                                <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>مناسبت</th>
+                                        <th>تاریخ</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+            <!--end Setup-->
+
+
+
+
+
+
+            <!--Analiz menu-->
+
+
+            <div id="cardAnaliz" class="cardAnaliz" dir="rtl">
+
+                <div id="receipt" class="receipt">
+                    <div class="col">
+                        <label><input type="radio" name="pay" value="cash" checked>پرداختهای حضوری</label>
+                        <label><input type="radio" name="pay" value="card">کارت به کارتیها</label>
+                        <label><input type="radio" name="pay" value="gateway">پرداختهای درگاهی</label>
+
+                    </div>
+
+                    <div class="col">
+
+                            <div class="datesReceipt">
+                                <div >ازتاریخ <select id="dayReceiptFrom"></select>/<select id="monthReceiptFrom"></select>/<select id="yearReceiptFrom"></select></div>
+                                <div > تاتاریخ<select id="dayReceiptTo"></select>/<select id="monthReceiptTo"></select>/<select id="yearReceiptTo"></select> </div>
+                                <div><button id="btnShowReceipt" class="btnShowReceipt">نمایش</button></div>
+                            </div>                    
+
+                            <div><label style="font-weight: bold">مشخصات مشتری</label></div>
+                    </div>
+
+                </div>
+
+                <div id="resultShow"></div>
+            
+
+
+            </div>
+
+
+
+
+            <!-- Report-->
+
+            <div id="cardReport" class="cardReport cardAnaliz">
+                <div class="col">
+                        <div id="divButton">
+                            <button id="btnReportNewOrder" type="button">جدیدترین سفارشها</button>
+                            <button id="btnReportLessDate" type="button"> نزدیکترین موعدتحویل</button>
+                            <button id="btnReportNotPaid" type="button">پرداخت نشده ها</button>
+                            <button id="btnReportPaid" type="button">تسویه </button>
+                            <button id="btnReport2" type="button">. . .</button>
+                        </div>
+
+                        
+                        <span id="spnReportTitleDetail"></span>
+                        <table id="tblReport" class="tableBox">
+                            <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>کدپیگیری</th>
+                                    <th>فرستنده</th>
+                                    <th>وضعیت سفارش</th>
+                                    <th>روش پرداخت</th>
+                                    <th>وضعیت پرداخت</th>
+                                    <th>تاریخ تحویل</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbodyTblReport"></tbody>
+                        </table>
+                </div>
+                <div style="background-color: red;" id="divVisit"><input type="image"></div>
+
+            </div>
         </div>
-        </form>
+
         
-    </div>    
-    
 
+
+
+
+
+
+
+<!--image receipt-->
+<div id="receiptView" class="receiptView">
+    <img class="receiptPic" id="receiptPic" alt="رسید">
 </div>
 
-<!--end Setup-->
 
 
-</div>  
-    
-
-    <div id="dialogBox" class="dialogBox">
-        <span id="msg"></span>
-    </div>
+       
 
 
 
 
-<div class="overlay" id="overlay">
-    <div id="cardConfirm" class="cardConfirm">
-       <span id="Msg"></span>
-        <div class="yesNo">
-                <div id="yes">بلی</div>
-                <div id="no">خیر</div>
+        <div class="overlay" id="overlay">
+            <div id="cardConfirm" class="cardConfirm">
+                <span id="Msg"></span>
+                <div class="yesNo">
+                    <div id="yes">بلی</div>
+                    <div id="no">خیر</div>
+                </div>
+            </div>
         </div>
+
+
+
+
+
+
+
+        <div class="box" id="box">
+
+        </div>
+
+
+
+<!--showMsg("...",bool)-->
+<div id="dialogBox" class="dialogBox">
+    <span id="msg"></span>
+
+
+</div>
+
+       
+
+
+
+
+
+<!-- inbox orders not Seen -->
+    <div id="divInbox">
+                <div id="divInboxDetail">
+            
+                </div>
+                <span id="spnTotalNotSeen" style="font-weight: bold;"></span>
+            <button type="button" id="btnInboxOk" style="max-width: fit-content;left:0;">باشه</button>
     </div>
-</div>
 
 
 
-
-
-
-
-<div class="box" id="box">
-    
-</div>
 
 </body>
+<script src="/socket.io/socket.io.js"></script>
 <script src="/admin/dashbordApi.js"></script>
 <script src="/admin/dashbord.js"></script>
+
+<script>
+
+    const socket=io();    
+    socket.on("adminRoom",(data)=>{alert(data.trackingCode+'کدپیگیری\n'+data.totalPrice+'قیمت کل\n'+'\nمدت زمان ارسال'+data.zaman+'\n'+data.remain+'مدت زمان تا ارسال');});
+
+</script>
 
 </html>

@@ -3,7 +3,7 @@ const loginForm=document.getElementById('loginForm');
 
 
 
-    loginForm.addEventListener('submit',(e)=>{
+    loginForm.addEventListener('submit',async(e)=>{
         e.preventDefault();
         const msg=document.getElementById('msg');
         const userName=document.getElementById('inpUserName').value;
@@ -14,9 +14,13 @@ const loginForm=document.getElementById('loginForm');
                 msg.textContent='لطفا فرم را کامل کنید';
                 return;
             }
-           
-           
-           if(userName==='a' && pass==='a')
+
+const data={userName:userName,password:pass};
+
+const response=await fetch('/loginAADDMMIINN',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+
+          const welcome=await response.json();
+           if(welcome.ok)
                 window.location.href='/admin/dashbord.html';
             else                
                 msg.textContent='اطلااعات وارد شده صحیح نمیباشد';           
